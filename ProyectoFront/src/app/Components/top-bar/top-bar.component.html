@@ -1,0 +1,10 @@
+
+
+<mat-toolbar color="primary">
+    <h1 class="logo" (click)="navigateToHome()">Ohana home</h1>
+    @if(!usuario){
+        <button  mat-button  class="inicioSesionButton" (click)="navigateToLogin()">Inicio sesión</button>
+    }
+    <span (click)="toggleDrawer()" class="material-symbols-outlined"> menu</span>
+</mat-toolbar>
+

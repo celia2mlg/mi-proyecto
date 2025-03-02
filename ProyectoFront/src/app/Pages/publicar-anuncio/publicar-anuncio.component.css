@@ -1,0 +1,116 @@
+
+  mat-button-toggle-group {
+    margin: auto;
+    margin-top: 4%;
+  }
+
+  .mat-stepper-horizontal {
+    margin-top: 8px;
+  }
+  
+  mat-stepper{
+    background-color: transparent;
+  }
+
+  .mat-mdc-form-field {
+    margin-top: 16px;
+  }
+
+  .checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 15px; 
+    width: 100%; 
+    margin-top: 5%;
+  }
+  
+
+  
+  .checkbox-container li {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+  }
+  
+  .checkbox-container mat-checkbox {
+    display: block; 
+  }
+  
+  .next{
+    position: absolute;
+    right: 6%;
+    bottom: 6%;
+  }
+  .contInputs{
+    display: flex;
+    align-items: center;
+  }
+
+  .contInputs h1 {
+    margin-right: 10%;       
+    flex-shrink: 0;           
+  }
+  
+.input{
+    max-width: 15%;
+}
+
+.inputAddress{
+  width: 70%;
+}
+.contenedor{
+    width: 50%; 
+    height: 70%;
+    margin-top: 2%; 
+    padding: 20px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); 
+    border-radius: 8px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: rgb(246, 248, 253);
+    margin-bottom: 1%;
+}
+
+.img{
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
+  overflow-x: auto;
+  max-width: 100%;
+  max-height: 150px;
+}
+
+.img img{
+  width:20%;
+  max-width: 20%;
+  max-height:20%;
+  object-fit: cover;
+}
+
+
+.cont{
+    width: 100%;
+    height: auto; 
+    display: flex;
+    margin: 0;
+    display: flex; 
+    justify-content: center; 
+    align-items: flex-start; 
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 15%;
+}
+
+ul{
+  list-style-type: none;
+}
+
+h1{
+  font-size: medium;
+  font-weight: normal;
+}
+
+.inputDescription{
+  width: 80%;
+}

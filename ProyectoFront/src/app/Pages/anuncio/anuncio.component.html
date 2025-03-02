@@ -1,0 +1,43 @@
+
+<div class="divPrincipal">
+    <div class="divFotos">
+    @if(anuncio){
+        <div class="imagenContent">
+            
+                @if(anuncio.photo && anuncio.currentImageIndex !== undefined){
+                    <mat-icon class="flecha izquierda" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
+                    <img mat-card-lg-image    [src]="'data:image/jpeg;base64,' + anuncioPhoto[anuncio.currentImageIndex].photo" alt="Imagen de {{ anuncio.propertyType }}">
+                    <mat-icon class="flecha derecha" [class.disabled]="anuncio.currentImageIndex==anuncio.photo.length-1"(click)="nextImage(anuncio)">chevron_right</mat-icon>
+        
+                }@else {
+                    <img mat-card-lg-image  src="assets/images/default.jpg" alt="Imagen por defecto">
+                }
+            
+        </div>
+        <div class="filaFotos">
+            @for(photo of anuncioPhoto; track photo){
+            <div class="fotoFila">
+            
+                <img mat-card-lg-image  [src]="'data:image/jpeg;base64,' + photo.photo"  (click)="selectImage(anuncio, photo.photoIndex)"  alt="Imagen de {{ photo.id }}"> 
+            
+            </div>
+        }
+        </div>
+    }
+    </div>
+    <div class="divDescripcion">
+        <h2 class="title" style="font-weight:500;">{{anuncio?.propertyType}} en {{anuncio?.address}}</h2>
+        <h3 >{{anuncio?.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto est nihil doloremque dignissimos enim, nobis ad corporis veniam officiis aperiam facere odit eaque doloribus possimus explicabo aliquam ut tempore adipisci.s</h3>
+        <h2 class="title">Caracteristicas</h2>
+        <div class="characteristics">
+                @for(characteristic of characteristics; track characteristic){
+                    <h3> {{characteristic.name}}:
+                    {{characteristic.value ? "Si" : "No"}}</h3>
+                }
+        </div>
+        <h1>{{anuncio?.price ?? 0 | customCurrency:'€'}}</h1>
+            
+    
+    </div>
+</div>
+

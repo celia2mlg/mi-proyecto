@@ -1,0 +1,174 @@
+<div class="cont">
+    <div class="contenedor">
+
+        <mat-stepper [linear]="true" #stepper>
+            <!-- Paso 1 -->
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>Paso 1</ng-template>
+                <h1>¿Qué quiere hacer?</h1>
+                <mat-button-toggle-group formControlName="transactionType" name="fontStyle" aria-label="Font Style">
+                    <mat-button-toggle value="sell">Vender</mat-button-toggle>
+                    <mat-button-toggle value="rent">Alquilar</mat-button-toggle>
+                </mat-button-toggle-group>
+                <h1>Seleccione el tipo de inmueble</h1>
+                <mat-form-field >
+                    <mat-label>Tipo de inmueble</mat-label>
+                    <mat-select formControlName="propertyType">
+                      @for (type of types; track type) {
+                        <mat-option [value]="type.value">{{type.viewValue}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>  
+                  <h1>Seleccione una opcion</h1>
+                  <mat-button-toggle-group formControlName="propertyState" name="fontStyle" aria-label="Font Style">
+                      <mat-button-toggle value="newBuild">Obra nueva</mat-button-toggle>
+                      <mat-button-toggle value="secondHand">Segunda mano</mat-button-toggle>
+                  </mat-button-toggle-group>
+                <div class="next">
+                  <button mat-button matStepperNext [disabled]="firstFormGroup.invalid">Siguiente</button>
+                </div>
+              </form>
+            </mat-step> 
+
+            <!-- Paso 2 -->
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel>Paso 2</ng-template>
+                <div class="contInputs">
+                    <h1>Número de habitaciones</h1>
+                    <mat-form-field class="input">
+                        <input matInput type="number"   formControlName="numRooms" required>
+                    </mat-form-field>   
+                </div>
+                <div class="contInputs">
+                    <h1>Número de baños</h1>
+                    <mat-form-field class="input">
+                        <input matInput type="number" formControlName="numBathrooms" required>
+                    </mat-form-field>
+                </div>
+                <div class="contInputs">
+                    <h1>Metros cuadrados</h1>
+                    <mat-form-field class="input">
+                        <input matInput type="number" formControlName="squareMeters" required>
+                    </mat-form-field>
+                </div>  
+                <div class="next">
+                  <button mat-button matStepperPrevious>Atrás</button>
+                  <button mat-button matStepperNext  [disabled]="secondFormGroup.invalid">Siguiente</button>
+                </div>
+              </form>
+            </mat-step>
+
+            <!--Paso 3-->
+            <mat-step >
+           
+                  <ng-template matStepLabel>Paso 3</ng-template>
+                  
+                    <section class="example-section">
+                      <div class="checkbox-container">
+
+                        
+                            @for(option of options(); track option; let i = $index){
+                          <li>
+                            <mat-checkbox
+                              [checked]="option.completed"
+                              (change)="update($event.checked, i)"
+                            >
+                              {{option.name}}
+                            </mat-checkbox>
+                          </li>
+                        }
+                        
+                      </div>
+                      </section>
+                                            
+                  <div class="next">
+                    <button mat-button matStepperPrevious>Atrás</button>
+                    <button mat-button matStepperNext  [disabled]="firstFormGroup.invalid">Siguiente</button>
+                  </div>
+         
+              </mat-step>
+              <!--Paso 4-->
+              <mat-step>
+                <form [formGroup]="thirdFormGroup">
+                   <ng-template matStepLabel>Paso 4</ng-template>
+                   <mat-form-field class="inputDescription">
+                    <textarea matInput
+                    placeholder = "Escriba una descripcion.."  
+                     type = "text" 
+                     class="form-control"
+                       matInput 
+                      formControlName= "description" 
+                      rows="3" >
+                    </textarea>
+                  </mat-form-field>
+                  <h1>Precio</h1>
+                  <mat-form-field>
+                    <input matInput
+                    type = "number" 
+                    class="form-control"
+                      matInput 
+                     formControlName= "price" 
+                    >
+                  </mat-form-field>
+                </form>
+                <div class="next">
+                  <button mat-button matStepperPrevious>Atrás</button>
+                  <button mat-button matStepperNext  [disabled]="thirdFormGroup.invalid">Siguiente</button>
+                </div>
+              </mat-step>
+
+              <!--Paso 5-->
+              <mat-step >
+                <form [formGroup]="fourthFormGroup">
+
+                <ng-template matStepLabel>Paso 5</ng-template>
+                <div class="contInputs">
+                    <h1>Dirección</h1>
+                    <mat-form-field class="inputAddress">
+                          <input matInput
+                           type = "text" 
+                           class="form-control"
+                            placeholder = "Buscar dirección..."  
+                            matInput 
+                            formControlName= "address" 
+                            [matAutocomplete]= "auto"
+                            (input)="onInputChange($event)" >
+                    </mat-form-field>   
+                    <mat-autocomplete #auto="matAutocomplete">@if(suggestions.length){
+     
+                      @for(suggestion of suggestions; track suggestion){
+                        <mat-option (click)="selectAddress(suggestion)"  [value]="suggestion.description">{{ suggestion.description }}</mat-option>
+                    }
+                    }
+                  </mat-autocomplete>
+
+                </div>
+                <div class="contInputs">
+                    <h1>Adjunte fotos</h1>
+                    <input type="file" (change)="capturarFile($event)" multiple>
+                    
+                </div>
+                <div class="img">
+                      @if(imgPreview){
+                        @for(img of imgPreview; track img.key){
+                                <img  [src]="img.img" alt="">
+                        }
+                    }
+                 </div>                          
+                <div class="next">
+                  <button mat-button matStepperPrevious>Atrás</button>
+                  <button mat-button (click)="addPost()"  [disabled]="firstFormGroup.invalid">Finalizar</button>
+                </div>
+                </form>
+            </mat-step>
+
+            </mat-stepper>
+          
+          
+        
+    </div>
+    
+      
+</div>

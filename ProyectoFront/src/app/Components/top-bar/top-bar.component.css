@@ -1,0 +1,20 @@
+.inicioSesionButton{
+    position: absolute;
+    right: 75px;
+}
+
+.material-symbols-outlined{
+    position: absolute;
+    right: 45px;
+}
+
+.logo{
+    font-style: italic  ;
+    font-size: xx-large;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.material-symbols-outlined{
+    cursor: pointer;
+}

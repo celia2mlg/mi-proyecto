@@ -1,0 +1,21 @@
+
+<mat-drawer-container class="example-container" [hasBackdrop]="true">
+    <mat-drawer #drawer [position]="'end'" [autoFocus]="false" [mode]="'over'">
+        @for(item of menuItems; track item){
+            <p class="op" (click)="navigateTo(item.route)">{{item.label}}</p>
+          }
+          @if(usuario){
+            <p (click)="cerrarSesion()">Cerrar sesión</p>
+            <mat-icon>logout</mat-icon>
+          }
+          
+    </mat-drawer>
+    <mat-drawer-content>
+        <app-top-bar class="topBar" (menuClicked)="toggleDrawer()"></app-top-bar>
+
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+
+    </mat-drawer-content>
+
+  </mat-drawer-container>

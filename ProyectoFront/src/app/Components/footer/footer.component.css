@@ -1,0 +1,122 @@
+.footer {
+    height: 40vh;
+    width: 98%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-right: 2%;
+    padding-left: 2%;
+}
+
+h2{
+    color:white;
+    font-weight:lighter;
+}
+
+.direccion{
+    margin-right: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 90%;
+
+}
+
+.quienesSomos{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 35%;
+    margin-right: 8%;
+
+}
+
+.contacto{
+    height: 90%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cuadroTexto{
+    height: 80%;
+}
+
+p{
+    font-size: small;
+    font-weight:lighter;
+
+}
+
+.whatsapp{
+    display: flex;
+    flex-direction: row;
+    gap: 20%;
+    margin-left: 3%;
+    margin-top: 3%;
+}
+
+.whatsapp p{
+    font-size: medium;
+}
+
+.fotoContacto{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+    margin-left: 10%;
+}
+
+.fotoContacto p{
+    font-size: large;
+}
+
+.telefono{
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    padding: 0%;
+    margin:0%;
+    padding-left: 5%;
+    padding-bottom: 2%;
+}
+
+.telefono p{
+    padding: 0%;
+    margin:0%;
+    font-size: large;
+
+}
+
+.whatsapp-link {
+    height: 65%;
+    background-color: #25D366; /* Color de fondo de WhatsApp */
+    color: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 200%;
+    margin-left: 5%;
+  }
+  
+  .whatsapp-link:hover {
+    background-color: #128C7E; /* Color de fondo en hover */
+    text-decoration: none;
+  }
+  
+  .contacto img{
+    width: 20%;
+    border-radius:50% ;
+  }
+
+  mat-icon{
+    font-size: 200%;
+    color:rgb(30, 167, 209);
+  }

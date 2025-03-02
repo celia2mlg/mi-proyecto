@@ -1,0 +1,31 @@
+.example-container mat-form-field + mat-form-field {
+    margin-left: 8px;
+  }
+
+  mat-card  {
+    margin-top: 50px;
+    width: 300px;
+    height: 350px;
+    justify-self: center;
+    align-content: center;
+    justify-items: center;
+    margin-bottom: 10%;
+  }
+  .botonSubmit{
+    font-size: 18px;
+  }
+ 
+
+.registrarse{
+  font-size: small; 
+  font-style: italic; 
+  text-decoration: underline;
+  margin-top: 0px;
+  cursor: pointer;
+}
+
+.submit{
+  position: absolute;
+  right: 20px;
+  
+}
