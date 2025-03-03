@@ -37,10 +37,12 @@ export const routes: Routes = [
     },
     {
         path: 'misFavoritos/:id',
-        loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misFavoritosPage: true }
+        loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misFavoritosPage: true },
+        canActivate: [authGuard]
     },
     {
         path: 'misAnuncios/:id',
-        loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misAnunciosPage: true }
+        loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misAnunciosPage: true },
+        canActivate: [authGuard]
     }
 ];

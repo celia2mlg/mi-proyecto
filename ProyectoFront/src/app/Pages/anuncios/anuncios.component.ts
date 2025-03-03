@@ -90,11 +90,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
             this.getFavoritos(this.usuario)
           }else if(this.misAnunciosPage === true){
             this.getMisAnuncios(this.usuario)
-            console.log("estamos en misAnuncios")
-
-          }else{
-            console.log("estamos aqui en anuncios")
-           
+          }else{           
             this.activatedRoute.queryParams.subscribe(params =>{
               if(Object.keys(params).length>0){
                 this.filtros = {...this.filtros, ...params};
