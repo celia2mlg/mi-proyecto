@@ -13,9 +13,13 @@
     <mat-drawer-content>
         <app-top-bar class="topBar" (menuClicked)="toggleDrawer()"></app-top-bar>
 
+        
       <router-outlet></router-outlet>
       <app-footer></app-footer>
 
     </mat-drawer-content>
 
   </mat-drawer-container>
+<ngx-ui-loader>
+
+</ngx-ui-loader>

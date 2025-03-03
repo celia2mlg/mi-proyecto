@@ -23,6 +23,12 @@ mat-drawer-content {
     margin-top: auto; /* Se coloca al final */
   }
 
+  ngx-ui-loader .ngx-progress-bar,
+   ngx-ui-loader .ngx-overlay,
+   ngx-ui-loader .ngx-background-spinner {
+     display: block !important;
+   }
+
 /* 
 html, body {
     margin: 0;

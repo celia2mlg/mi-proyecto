@@ -1,15 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './Components/top-bar/top-bar.component';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { LoginService } from './Services/login.service';
 import { Usuario } from './Modelos/usuario';
 import { FooterComponent } from "./Components/footer/footer.component";
 import { MatIconModule } from '@angular/material/icon';
+import { NgxUiLoaderService } from 'ngx-ui-loader'; 
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
+ 
 @Component({
   selector: 'app-root',
-  imports: [MatIconModule,RouterOutlet, MatSidenavModule, TopBarComponent, FooterComponent],
+  imports: [MatIconModule,RouterOutlet,NgxUiLoaderModule, MatSidenavModule, TopBarComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -25,12 +28,25 @@ export class AppComponent implements OnInit{
     {label:"Mis anuncios favoritos", route:"/misFavoritos/"+this.usuario.id},
 
   ];
-  constructor(private router: Router, private loginService:LoginService) { }
+  constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
+    this.ngxLoader.start();
+    window.addEventListener('load',()=>{
+      this.ngxLoader.stop();
+    })
+
     this.loginService.usuario$.subscribe(usuario=>{
       this.usuario = usuario as Usuario;
     })
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.ngxLoader.start();
+      } else if (event instanceof NavigationEnd || event instanceof NavigationCancel || event instanceof NavigationError) {
+        this.ngxLoader.stop();
+      }
+    });
     // this.loginService.getUser().subscribe(
     //   (response)=>{
     //     this.usuario= response as Usuario;
