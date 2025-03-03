@@ -18,13 +18,26 @@
   flex-direction: column;
   min-height: 100vh;  
   height: auto; 
+  width: 70%;
   
  } 
  .contenedorCards{
   display: flex;
-  flex-wrap: wrap; /* Para que los mat-cards se acomoden bien si hay muchos */
-  justify-content: center; /* Centra los mat-cards */
-  gap: 16px; /
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 16px; 
+
+
+ }
+
+ .contNoEncontrado{
+   margin-left: 25%;
+   margin-top:10%;
+ }
+
+ .imgNoEncontrada{
+  width: 30%;
+
  }
 
  .example-card{
