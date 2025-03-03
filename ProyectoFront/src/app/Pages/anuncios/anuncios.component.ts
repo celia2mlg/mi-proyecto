@@ -85,6 +85,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
           this.usuario = response as Usuario;
           console.log(this.misAnunciosPage)
 
+
           if(this.misFavoritosPage === true){
             this.getFavoritos(this.usuario)
           }else if(this.misAnunciosPage === true){
@@ -93,6 +94,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
 
           }else{
             console.log("estamos aqui en anuncios")
+           
             this.activatedRoute.queryParams.subscribe(params =>{
               if(Object.keys(params).length>0){
                 this.filtros = {...this.filtros, ...params};
@@ -116,12 +118,13 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
               ...anuncio,
               currentImageIndex: 0
             }))
+           
 
             if (Object.keys(this.filtros).some(key => this.filtros[key])) {
               this.filtrar();
             }else{
               this.anunciosFiltrados = this.anuncios;
-
+              
             }
             this.length = this.anunciosFiltrados.length;
 

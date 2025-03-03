@@ -89,6 +89,7 @@
               <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure accusamus autem sunt dignissimos saepe consectetur ducimus et fugit numquam, eveniet non asperiores ratione deleniti soluta quam tempora rerum! Atque, placeat!</h4>
             </div>
             <div class="bottom">
+              @if(this.usuario != null){
                 @if(isFavorito(anuncio)){
                   <button class="favoritoTrue" (click)="fav(anuncio)" mat-fab extended>
                     <mat-icon>favorite</mat-icon>
@@ -100,6 +101,13 @@
                   Favorite
                 </button>
               }
+              }@else {
+                <button disabled mat-fab extended>
+                  <mat-icon>favorite</mat-icon>
+                  Favorite
+                </button>
+              }
+                
               
               <button mat-fab extended (click)="openContactSeller(anuncio)">
                 <mat-icon>call</mat-icon>
