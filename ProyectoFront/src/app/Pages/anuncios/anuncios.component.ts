@@ -16,6 +16,7 @@
 import { LoginService } from '../../Services/login.service';
 import { Usuario } from '../../Modelos/usuario';
 import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
+import { PaginationHelper } from '../../Helpers/pagination-helper';
 
   
   @Component({
@@ -54,8 +55,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
       this.length = e.length;
       this.pageSize = e.pageSize;
       this.pageIndex = e.pageIndex;
-      this.getPaginatedData(); // Actualiza la lista paginada
-
+      this.paginatedAnuncios = PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize); 
     }
     setPageSizeOptions(setPageSizeOptionsInput: string) {
       if (setPageSizeOptionsInput) {
@@ -124,7 +124,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
             }
             this.length = this.anunciosFiltrados.length;
 
-            this.getPaginatedData();
+            this.paginatedAnuncios=PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize);
             this.cdr.markForCheck();
 
           }else{
@@ -187,32 +187,13 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
       this.anunciosFiltrados = this.anuncioService.filtrosService(this.anuncios,this.filtros);
       console.log(this.anunciosFiltrados)
       console.log("estamos en filtrar()")
-      this.getPaginatedData();
+      this.paginatedAnuncios=PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize,);
     }
 
-    //Favorito
+    //Dar o quitar favorito
     fav(anuncio: Anuncio){
-      const isFavorito = this.isFavorito(anuncio);
-      if (isFavorito) {
-        anuncio.favoritos = anuncio.favoritos?.filter(fav => fav.id !== this.usuario.id);
+      this.anuncioService.favService(anuncio, this.usuario, this.misFavoritosPage, this.anuncios,this.anunciosFiltrados, this.paginatedAnuncios,this.pageIndex, this.pageSize)
 
-        if (this.misFavoritosPage) {
-          this.anuncios = this.anuncios.filter(a => a.id !== anuncio.id);
-          this.anunciosFiltrados = this.anuncios;
-        }
-
-      } else {
-        if (!anuncio.favoritos) anuncio.favoritos = [];
-        anuncio.favoritos.push(this.usuario);
-      }
-     
-    
-      this.anuncioService.favService(anuncio, this.usuario).subscribe(
-        (response) =>{
-          console.log("fav actualizado")
-        }
-      )
-        
       this.cdr.markForCheck();
      
     }
@@ -220,7 +201,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
     //Comprobar favoritos
     isFavorito(anuncio: Anuncio): boolean{
 
-      return anuncio.favoritos?.some(fav => Number(fav.id) === Number(this.usuario.id)) ?? false;
+      return this.anuncioService.isFavoritoService(anuncio, this.usuario);
     }
 
     //Cargar anuncios favoritos del usuario
@@ -241,7 +222,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
               this.anunciosFiltrados = this.anuncios;
               this.length = this.anunciosFiltrados.length;
 
-              this.getPaginatedData();
+              this.paginatedAnuncios=PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize);
   
               this.cdr.markForCheck();
   
@@ -273,7 +254,7 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
               this.anunciosFiltrados = this.anuncios;
               this.length = this.anunciosFiltrados.length;
 
-              this.getPaginatedData();
+              this.paginatedAnuncios=PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize);
   
               this.cdr.markForCheck();
   
@@ -287,11 +268,11 @@ import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
       }
      
       //Paginator
-      getPaginatedData(){
-        const startIndex = this.pageIndex * this.pageSize;
-        const endIndex = startIndex + this.pageSize;
-        this.paginatedAnuncios = this.anunciosFiltrados.slice(startIndex, endIndex);
+      // getPaginatedData(){
+      //   const startIndex = this.pageIndex * this.pageSize;
+      //   const endIndex = startIndex + this.pageSize;
+      //   this.paginatedAnuncios = this.anunciosFiltrados.slice(startIndex, endIndex);
     
-      }
+      // }
 
   }

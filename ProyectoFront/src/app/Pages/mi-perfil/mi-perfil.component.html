@@ -1,0 +1,110 @@
+<!-- <div class="contenedor">
+    @if(paginatedAnuncios.length>0){
+    <div class="contenedorCards">
+      @for(anuncio of paginatedAnuncios; track anuncio){
+        <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title style="cursor:pointer" (click)="navigateTo(anuncio)">{{anuncio.propertyType}} en {{anuncio.address}}</mat-card-title>
+                <mat-card-subtitle>
+                    <h3>{{anuncio.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio.squareMeters}} m² &nbsp;&nbsp;{{anuncio.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
+                </mat-card-subtitle>
+              </mat-card-title-group>
+              <div class="description">
+                <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure accusamus autem sunt dignissimos saepe consectetur ducimus et fugit numquam, eveniet non asperiores ratione deleniti soluta quam tempora rerum! Atque, placeat!</h4>
+              </div>
+              <div class="bottom">
+                @if(this.usuario != null){
+                  @if(isFavorito(anuncio)){
+                    <button class="favoritoTrue" (click)="fav(anuncio)" mat-fab extended>
+                      <mat-icon>favorite</mat-icon>
+                      Favorite
+                    </button>  
+                  }@else{
+                  <button (click)="fav(anuncio)" mat-fab extended>
+                    <mat-icon>favorite</mat-icon>
+                    Favorite
+                  </button>
+                }
+                }@else {
+                  <button disabled mat-fab extended>
+                    <mat-icon>favorite</mat-icon>
+                    Favorite
+                  </button>
+                }
+                  
+                
+                <button mat-fab extended (click)="openContactSeller(anuncio)">
+                  <mat-icon>call</mat-icon>
+                  Contactar
+                </button>                        
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="image-container">
+                    @if(anuncio.photo && anuncio.photo.length > 0 && anuncio.currentImageIndex !== undefined){
+                            <mat-icon class="leftArrow" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
+                          
+                            <img mat-card-lg-image style="cursor:pointer" (click)="navigateTo(anuncio)" [src]="'data:image/jpeg;base64,' + anuncio.photo[anuncio.currentImageIndex].photo" alt="Imagen de {{ anuncio.propertyType }}">
+  
+                            <mat-icon class="rightArrow" [class.disabled]="anuncio.currentImageIndex==anuncio.photo.length-1"(click)="nextImage(anuncio)">chevron_right</mat-icon>
+                    }@else {
+                        <mat-icon class="leftArrow" style="visibility: hidden;" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
+                        <img mat-card-lg-image style="cursor:pointer" (click)="navigateTo(anuncio)" src="assets/images/default.jpg" alt="Imagen por defecto">
+                        <mat-icon class="rightArrow" style="visibility: hidden;" [class.disabled]  (click)="nextImage(anuncio)">chevron_right</mat-icon>
+                    }
+                    
+                  </div>
+                  
+            </mat-card-content>
+        </mat-card>
+     
+    }
+      
+    </div>
+    <div class="paginator">
+      <mat-paginator #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page">
+      </mat-paginator>
+    </div>
+   
+      
+        
+        }@else {
+          <div class="contenedorCards">
+            <div class="contNoEncontrado">
+              <img class="imgNoEncontrada" src="assets/images/pagina-no-encontrada.png">
+              <h3 style="color:rgb(32, 115, 224);">No hay resultados...</h3>
+            </div>
+            
+  
+          </div>
+        }
+           
+        @if(viewContactSeller == true && selectedAnuncio != null){
+          {{selectedAnuncio}}
+          <div class="contact-seller-overlay" (click)="closeContactSeller()">
+            <div class="contact-seller-container" (click)="$event.stopPropagation()">
+              <mat-card class="contactSeller" appearance="outlined">
+                <mat-card-content class="contactToSeller">
+                  <h2>Contacta con el vendedor</h2>
+                  <h3>{{selectedAnuncio.seller?.nombre}}&nbsp;{{selectedAnuncio.seller?.apellidos}}</h3>
+                  <h3 (click)="copyToClipboard(selectedAnuncio.seller?.telefono)"><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3>
+                  <h3 (click)="copyToClipboard(selectedAnuncio.seller?.email)"><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3>
+                </mat-card-content>
+              </mat-card> 
+            </div>
+          </div>
+        }
+      
+    </div>
+   -->
