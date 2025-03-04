@@ -1,0 +1,163 @@
+
+.contenedor{
+    padding-top: 2%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  
+    height: auto; 
+    width: 70%;
+    
+   } 
+   .contenedorCards{
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 16px; 
+  
+  
+   }
+   .example-card{
+     flex-direction: row;
+     justify-content: space-between;
+     padding-bottom: 2%;
+     padding-right: 1%;
+     width: 75%;
+   }
+
+   .description h4{
+    font-size: small;
+    font-weight: normal;
+  }
+ 
+  .example-card .bottom button{
+    height: 120%;
+    margin-right: 5%;
+  }
+ 
+  .contactSeller{
+    z-index: 5552; 
+    width: 100%;
+    height: 100%;
+  }
+  .contact-seller-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7); 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    z-index: 9999; 
+  }
+
+   
+ .contact-seller-container {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 60%;
+  }
+  
+  .contactToSeller h2,h3{
+    font-weight: normal;
+    cursor: pointer;
+  }
+
+  .favoritoTrue{
+    color: palevioletred;
+  }
+  
+  .paginator {
+    display: flex;
+    justify-content: flex-start; 
+    width: 100%; 
+    margin-left: 12%;
+  }
+
+  .image-container{
+ 
+    display:flex;
+    align-items: center;        
+    justify-content: center;
+    margin-top: 10%;
+    align-self: flex-end;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+ 
+  .rightArrow{
+    position:absolute;
+    transform: translateY(-50%);
+    z-index: 2; 
+    top:50%;
+    right: 5%;
+    font-size: xx-large;
+    cursor: pointer;
+  }
+ 
+  .leftArrow{
+    position:absolute;
+    transform: translateY(-50%);
+    z-index: 2; 
+    top:50%;
+    left:0%;
+    font-size: xx-large;
+    cursor: pointer;
+  } 
+ 
+  .leftArrow.disabled, .rightArrow.disabled {
+    cursor:auto;
+    opacity:0.5 ;
+  }
+ 
+  .bed{
+    vertical-align: bottom;
+  }
+  .bathtub{
+    vertical-align: middle;
+  }
+    
+  
+ .contNoEncontrado{
+    margin-left: 25%;
+    margin-top:10%;
+  }
+ 
+  .imgNoEncontrada{
+   width: 30%;
+ 
+  }
+  mat-card-header{
+    display: flex;
+    flex-direction: column;
+  } 
+
+  .infoUsuario{
+    width: 25%;
+    padding-left: 3%;
+  }
+
+  .infoUsuario h2, h3{
+    font-weight: lighter;
+    color:black;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  .page{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .tabGroup{
+    width: 75%;
+  }

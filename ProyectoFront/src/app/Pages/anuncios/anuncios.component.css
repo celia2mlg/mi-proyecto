@@ -26,9 +26,22 @@
   flex-wrap: wrap; 
   justify-content: center; 
   gap: 16px; 
+  
 
 
  }
+ .titulo {
+  flex-basis: 100%;
+  margin-left: 15%;
+  margin-bottom:0;
+}
+
+.titulo h1{
+  font-weight: lighter;
+  margin-top: 0;
+  margin-bottom: 0;
+
+}
 
  .contNoEncontrado{
    margin-left: 25%;
@@ -46,6 +59,7 @@
    padding-bottom: 2%;
    padding-right: 1%;
    width: 75%;
+
  }
  
 
@@ -144,6 +158,10 @@
 .filtros{
   width: 30%;
   margin: 2%;
+}
+a{
+  text-decoration: none;
+  color:black;
 }
 
 .favoritoTrue{

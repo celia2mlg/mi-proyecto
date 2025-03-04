@@ -164,10 +164,6 @@ import { PaginationHelper } from '../../Helpers/pagination-helper';
       this.selectedAnuncio = null;
     }
     
-    //Copiar info 
-    copyToClipboard(text: any){
-      navigator.clipboard.writeText(text);
-    }
 
     //Salir al pulsar fuera del cuadro
     @HostListener('document:click', ['$event'])

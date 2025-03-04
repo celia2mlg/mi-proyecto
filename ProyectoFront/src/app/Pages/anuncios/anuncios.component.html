@@ -76,6 +76,13 @@
   <div class="contenedor">
   @if(paginatedAnuncios.length>0){
   <div class="contenedorCards">
+    <div class="titulo">
+      @if(this.misFavoritosPage){
+        <h1>Favoritos</h1>
+      }@else if(this.misAnunciosPage){
+        <h1>Publicaciones</h1>
+      }
+    </div>
     @for(anuncio of paginatedAnuncios; track anuncio){
       <mat-card class="example-card" appearance="outlined">
           <mat-card-header>
@@ -173,8 +180,8 @@
               <mat-card-content class="contactToSeller">
                 <h2>Contacta con el vendedor</h2>
                 <h3>{{selectedAnuncio.seller?.nombre}}&nbsp;{{selectedAnuncio.seller?.apellidos}}</h3>
-                <h3 (click)="copyToClipboard(selectedAnuncio.seller?.telefono)"><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3>
-                <h3 (click)="copyToClipboard(selectedAnuncio.seller?.email)"><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3>
+                        <a [href]="'tel:+34'+selectedAnuncio.seller?.telefono"><h3><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3></a>
+                        <a [href]="'mailto:'+selectedAnuncio.seller?.email"><h3><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3></a>
               </mat-card-content>
             </mat-card> 
           </div>
