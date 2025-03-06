@@ -1,7 +1,10 @@
 
 
 <mat-toolbar color="primary">
+    <img src="/assets/images/logosinfondo.png">
+
     <h1 class="logo" (click)="navigateToHome()">Ohana home</h1>
+
     @if(!usuario){
         <button  mat-button  class="inicioSesionButton" (click)="navigateToLogin()">Inicio sesión</button>
     }

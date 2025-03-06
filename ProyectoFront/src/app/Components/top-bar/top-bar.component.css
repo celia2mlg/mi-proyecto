@@ -8,10 +8,15 @@
     right: 45px;
 }
 
+img{
+    margin-left: 1%;
+    width: 3%;
+}
+
 .logo{
     font-style: italic  ;
     font-size: xx-large;
-    margin-left: 20px;
+    margin-left: 0.5%;
     cursor: pointer;
 }
 
