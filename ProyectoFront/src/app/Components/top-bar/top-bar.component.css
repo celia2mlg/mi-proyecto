@@ -18,8 +18,10 @@ img{
     font-size: xx-large;
     margin-left: 0.5%;
     cursor: pointer;
+    margin-top: 0.75%;
 }
 
 .material-symbols-outlined{
     cursor: pointer;
 }
+
