@@ -147,8 +147,8 @@
                 </div>
                 <div class="contInputs">
                     <h1>Adjunte fotos</h1>
-                    <input type="file" (change)="capturarFile($event)" multiple>
-                    
+                    <input   #fileInput type="file" (change)="capturarFile($event)" multiple hidden>
+                      <button mat-button (click)="fileInput.click()">Elegir archivos</button>                 
                 </div>
                 <div class="img">
                       @if(imgPreview){
@@ -156,10 +156,11 @@
                                 <img  [src]="img.img" alt="">
                         }
                     }
-                 </div>                          
+                 </div>       
+                                  
                 <div class="next">
                   <button mat-button matStepperPrevious>Atrás</button>
-                  <button mat-button (click)="addPost()"  [disabled]="firstFormGroup.invalid">Finalizar</button>
+                  <button mat-button (click)="addPost()"  [disabled]="fourthFormGroup.invalid">Finalizar</button>
                 </div>
                 </form>
             </mat-step>

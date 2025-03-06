@@ -34,6 +34,7 @@ export class AppComponent implements OnInit{
       if(usuario){
         this.usuario = usuario as Usuario;
         this.menuItems = [
+          {label:"Ver todos los anuncios", action: () => this.navigateTo("/anuncios")},
           {label:"Publicar nuevo anuncio", action: () => this.navigateTo("/publicar")},
           {label:"Mi perfil", action: () => this.navigateTo("/miPerfil/"+this.usuario.id)},
           {label:"Mis anuncios publicados", action: () => this.navigateTo("/misAnuncios/"+ this.usuario.id)},
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit{
         ];
       }else{
         this.menuItems = [
+          {label:"Ver todos los anuncios", action: () => this.navigateTo("/anuncios")},
           {label:"Iniciar sesión", icon: "login", action: () => this.navigateTo("/inicioSesion")}
         ]
       }

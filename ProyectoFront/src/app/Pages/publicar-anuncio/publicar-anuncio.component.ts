@@ -247,9 +247,11 @@ import { Router } from '@angular/router';
    } 
  
   this.anuncioService.addAnuncioService(formData).subscribe(
-        response =>  console.log("anuncio subido" , response),
+        response =>  {
+          this.router.navigate(["/anuncios"]); 
+        }
+
         )
-        this.router.navigate(["/anuncios"]);
       })
       
 }

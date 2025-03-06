@@ -40,6 +40,7 @@
     position: absolute;
     right: 6%;
     bottom: 6%;
+    bottom: 1.5%;
   }
   .contInputs{
     display: flex;
