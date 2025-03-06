@@ -4,6 +4,7 @@
     import { Observable } from 'rxjs';
     import { map } from 'rxjs/operators'; 
 import { Usuario } from '../Modelos/usuario';
+import { PaginationHelper } from '../Helpers/pagination-helper';
     
     @Injectable({
       providedIn: 'root',
@@ -48,13 +49,15 @@ import { Usuario } from '../Modelos/usuario';
           map(response=> response))
 
       }
-
+      
+      //Get un anuncio especifico
       getAnunciosService(){
         return this.http.get<Anuncio[]>(this.rutaGlobal+"anuncio/getAnuncios",{
           observe: "response"
         });
       }
 
+      //Get tidis los anuncios
       getAnuncioService(id:number){
         return this.http.get<Anuncio>(this.rutaGlobal+"anuncio/getAnuncio/"+id,{
           observe:"response"
@@ -62,7 +65,7 @@ import { Usuario } from '../Modelos/usuario';
         })
       }
 
-
+      //Filtros
       filtrosService(anuncios:Anuncio[], filtros:{[key:string]: boolean | number | string | null}): Anuncio[]{
         return anuncios.filter(anuncio=>{
           return Object.keys(filtros).every(key=>{
@@ -99,8 +102,8 @@ import { Usuario } from '../Modelos/usuario';
         )
       }
 
-
-      favService(anuncio:Anuncio, usuario:Usuario){
+      //Dar favorito en el back
+      favBackService(anuncio:Anuncio, usuario:Usuario){
         const token = localStorage.getItem('token'); 
         const headers = new HttpHeaders({
           'Authorization': `Bearer ${token}` 
@@ -125,5 +128,50 @@ import { Usuario } from '../Modelos/usuario';
         })
       }
 
+      //Comprobar si el anuncio es favorito
+      isFavoritoService(anuncio: Anuncio, usuario:Usuario): boolean{
+
+        return anuncio.favoritos?.some(fav => Number(fav.id) === Number(usuario.id)) ?? false;
+      }
+
+      //Dar o quitar favorito
+      favService(anuncio: Anuncio, usuario:Usuario, misFavoritosPage:boolean, anuncios: Anuncio[], anunciosFiltrados:Anuncio[], paginatedAnuncios: Anuncio[],  pageIndex: number,
+        pageSize: number ){
+        const isFavorito = this.isFavoritoService(anuncio, usuario);
+        if (isFavorito) {
+          anuncio.favoritos = anuncio.favoritos?.filter(fav => fav.id !== usuario.id);
+  
+          if (misFavoritosPage) {
+              //Quitar de anuncios
+              const indexAnuncio = anuncios.findIndex(a => a.id === anuncio.id);
+              if (indexAnuncio !== -1) {
+                anuncios.splice(indexAnuncio, 1);
+              } 
+              //Quitar de anuncios Filtrados
+              const indexFiltrado = anunciosFiltrados.findIndex(a => a.id === anuncio.id);
+              if (indexFiltrado !== -1) {
+                anunciosFiltrados.splice(indexFiltrado, 1);
+              }
+
+              const nuevosPaginated = PaginationHelper.getPaginatedData(anunciosFiltrados, pageIndex, pageSize);
+              paginatedAnuncios.splice(0, paginatedAnuncios.length, ...nuevosPaginated);
+
+          }
+  
+        } else {
+          if (!anuncio.favoritos) anuncio.favoritos = [];
+          anuncio.favoritos.push(usuario);
+        }
+       
+      
+        this.favBackService(anuncio, usuario).subscribe(
+          (response) =>{
+            console.log("fav actualizado")
+          }
+        )
+      }
+
+
+      
 
     }

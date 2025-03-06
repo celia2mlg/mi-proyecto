@@ -6,6 +6,10 @@ import { AnunciosComponent } from './Pages/anuncios/anuncios.component';
 import { authGuard } from './Helpers/auth.guard';
 import { HomeComponent } from './Pages/home/home.component';
 import { AnuncioComponent } from './Pages/anuncio/anuncio.component';
+import { MiPerfilComponent } from './Pages/mi-perfil/mi-perfil.component';
+import { NotFoundComponent } from './Pages/not-found/not-found.component';
+import { ValidarUsuarioGuard } from './Helpers/validar-usuario-guard';
+import { RestrictedPageComponent } from './Pages/restricted-page/restricted-page.component';
 
 
 
@@ -38,11 +42,24 @@ export const routes: Routes = [
     {
         path: 'misFavoritos/:id',
         loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misFavoritosPage: true },
-        canActivate: [authGuard]
+        canActivate: [authGuard,ValidarUsuarioGuard]
     },
     {
         path: 'misAnuncios/:id',
         loadComponent: () => import("./Pages/anuncios/anuncios.component").then(componente => AnunciosComponent),data: { misAnunciosPage: true },
-        canActivate: [authGuard]
+        canActivate: [authGuard,ValidarUsuarioGuard]
+    },
+    {
+        path: 'miPerfil/:id',
+        loadComponent: () => import("./Pages/mi-perfil/mi-perfil.component").then(componente => MiPerfilComponent),
+        canActivate: [authGuard,ValidarUsuarioGuard]
+    },
+    {
+        path: 'restricted-page',
+        loadComponent: () => import("./Pages/restricted-page/restricted-page.component").then(componente => RestrictedPageComponent),
+    },
+    {
+        path: '**',
+        loadComponent: () => import("./Pages/not-found/not-found.component").then(componente => NotFoundComponent),
     }
 ];

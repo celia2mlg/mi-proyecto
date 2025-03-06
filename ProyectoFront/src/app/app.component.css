@@ -1,27 +1,37 @@
 .op{
-    margin-left: 20%;
-    margin-top:10%;
+    margin-left: 10%;
     font-size: large;
-    color: rgb(0, 0, 0);
+    color: rgb(48, 44, 44);
     cursor:pointer;
-
 }
+.opDiv{
+  margin-bottom: -2%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap:3%;
+}
+
+
+
 mat-drawer-content {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     height: auto;
   }
-  mat-drawer {
-    height: 100vh;
-  }
-  router-outlet {
-    flex-grow: 1; 
-  }
-  
-  app-footer {
-    margin-top: auto; /* Se coloca al final */
-  }
+
+mat-drawer {
+  height: 100vh;
+  padding-top: 2%;
+}
+router-outlet {
+  flex-grow: 1; 
+}
+
+app-footer {
+  margin-top: auto; 
+}
 
   ngx-ui-loader .ngx-progress-bar,
    ngx-ui-loader .ngx-overlay,

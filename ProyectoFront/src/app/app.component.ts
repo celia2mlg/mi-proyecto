@@ -19,15 +19,9 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 export class AppComponent implements OnInit{
   title = 'Proyecto';
   usuario:Usuario = {};
+  menuItems: any[] = [];
 
 
-  menuItems = [
-    {label:"Publicar nuevo anuncio", route:"/publicar"},
-    {label:"Mi perfil", route:""},
-    {label:"Mis anuncios publicados", route:"/misAnuncios/"+ this.usuario.id},
-    {label:"Mis anuncios favoritos", route:"/misFavoritos/"+this.usuario.id},
-
-  ];
   constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
@@ -37,7 +31,21 @@ export class AppComponent implements OnInit{
     })
 
     this.loginService.usuario$.subscribe(usuario=>{
-      this.usuario = usuario as Usuario;
+      if(usuario){
+        this.usuario = usuario as Usuario;
+        this.menuItems = [
+          {label:"Publicar nuevo anuncio", action: () => this.navigateTo("/publicar")},
+          {label:"Mi perfil", action: () => this.navigateTo("/miPerfil/"+this.usuario.id)},
+          {label:"Mis anuncios publicados", action: () => this.navigateTo("/misAnuncios/"+ this.usuario.id)},
+          {label:"Mis anuncios favoritos", action: () => this.navigateTo("/misFavoritos/"+this.usuario.id)},
+          {label:"Cerrar sesión", icon: "logout", action: () => this.cerrarSesion()}
+        ];
+      }else{
+        this.menuItems = [
+          {label:"Iniciar sesión", icon: "login", action: () => this.navigateTo("/inicioSesion")}
+        ]
+      }
+    
     })
 
     this.router.events.subscribe(event => {
