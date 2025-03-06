@@ -21,6 +21,7 @@ import { Credentials } from '../../Modelos/usuario';
 export class InicioSesionComponent {
   formulario:  FormGroup;
   usuarios : Array<Usuario>;
+  errorMsg?:string;
 
   constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService){
     this.usuarios = new Array<Usuario>
@@ -40,16 +41,18 @@ export class InicioSesionComponent {
   login(){
     this.creds.email = this.formulario.get("email")?.value
     this.creds.password = this.formulario.get("password")?.value
-
+    
     console.log("en el compoennte")
     console.log(this.creds)
 
     this.loginService.login(this.creds).subscribe(
       response => {
-        console.log(this.creds)
-   
-      }
-    );
+        if (!response.success) {
+          this.errorMsg = response.error;
+        } else {
+          this.errorMsg = undefined;
+        }
+  });
 
   }
 

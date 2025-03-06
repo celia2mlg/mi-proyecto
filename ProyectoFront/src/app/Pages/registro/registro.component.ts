@@ -18,6 +18,7 @@ import { LoginService } from '../../Services/login.service';
 })
 export class RegistroComponent {
   formulario:  FormGroup;
+  errorMsg?: string;
 
   constructor(private fb:FormBuilder, private router: Router, private registroService: RegistroService
     , private loginService: LoginService 
@@ -58,27 +59,37 @@ addUsuario(){
         telefono: this.formulario.get("phoneNumber")?.value,
         password: this.formulario.get("password")?.value
       }
-     
-      this.registroService.addUsuarioService(usuario).subscribe(
+
+      this.registroService.verifyEmail(usuario.email!).subscribe(
         response => {
-          console.log(response)
-          console.log(response.body?.email)
-    
-          });
+          if(response.body){
+            this.errorMsg = "Email ya existe."
+          }else{
+            this.registroService.addUsuarioService(usuario).subscribe(
+              response => {
+                console.log(response)
+                console.log(response.body?.email)
+          
+                });
+            
+            const credentials : Credentials ={
+              email : usuario?.email,
+              password : usuario?.password
+            }
       
-      const credentials : Credentials ={
-        email : usuario?.email,
-        password : usuario?.password
-      }
-
-      console.log(credentials)
-
-      this.loginService.login(credentials).subscribe(
-        loginResponse => {
-          console.log("login completado")
+            console.log(credentials)
+      
+            this.loginService.login(credentials).subscribe(
+              loginResponse => {
+                console.log("login completado")
+              }
+            );
+      
+          }
         }
-      );
-
+      )
+     
+      
 
     }
 

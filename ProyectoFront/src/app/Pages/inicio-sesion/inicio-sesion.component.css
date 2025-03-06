@@ -3,20 +3,28 @@
   }
 
   mat-card  {
-    margin-top: 50px;
-    width: 300px;
-    height: 350px;
+    width: 22%;
+    height: 60%;
     justify-self: center;
-    align-content: center;
-    justify-items: center;
     margin-bottom: 10%;
+
   }
+  
+  .page{
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3%;
+
+  }
+
   .botonSubmit{
     font-size: 18px;
   }
- 
 
-.registrarse{
+
+p{
   font-size: small; 
   font-style: italic; 
   text-decoration: underline;
@@ -26,6 +34,6 @@
 
 .submit{
   position: absolute;
-  right: 20px;
-  
+  right: 4%;
+  bottom: 4%;
 }

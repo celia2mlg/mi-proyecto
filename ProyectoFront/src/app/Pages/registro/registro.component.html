@@ -1,73 +1,94 @@
-<mat-card appearance="outlined">
-    <mat-card-content>
-        <form [formGroup]="formulario">
-            <div class="example-container">
-                <mat-form-field>
-                    <mat-label>Nombre</mat-label>
-                        <input type="text"
-                            matInput
-                            formControlName="name"
-                            required
-                        />
-                </mat-form-field>
-            </div>
-            <div class="example-container">
-                <mat-form-field>
-                    <mat-label>Apellidos</mat-label>
-                        <input type="text"
-                            matInput
-                            formControlName="surname"
-                            required
-                        />
-                </mat-form-field>
-            </div>
-            <div class="example-container">
-                <mat-form-field>
-                    <mat-label>Email</mat-label>
-                        <input type="email"
-                            matInput
-                            formControlName="email"
-                            required
-                        />
-                </mat-form-field>
-            </div>
-            <div class="example-container">
-                <mat-form-field>
-                    <mat-label>Teléfono</mat-label>
-                        <input type="number"
-                            matInput
-                            formControlName="phoneNumber"
-                            required
-                        />
-                </mat-form-field>
-            </div>
-            <div class="example-container">
-                <mat-form-field>
-                  
-                    <mat-label>Contraseña</mat-label>
-                        <input type="password" autocomplete="new-password"
-                                matInput
-                                formControlName="password"
-                                required
-                    />
-                </mat-form-field>
-            </div>
-            <div class="example-container">
-                <mat-form-field>
-                    <mat-label>Confirmar contraseña</mat-label>
-                        <input type="password" autocomplete="new-password"
-                            matInput
-                            formControlName="confirmPass"
-                            required
-                        />
-                </mat-form-field>
-            </div>
-           
-                    <p class="iniciarSesion" (click)="navigateToLogin()">¿Ya tienes cuenta? Inicia sesión</p>
-                    <div class="submit">
-                            <button class="botonSubmit" (click)="addUsuario()"  [disabled]="formulario.invalid" mat-button>Regístrate</button>
-                    </div>                  
-            </form>        
-    </mat-card-content>
-  </mat-card>
-    
+<div class="page">
+    <mat-card appearance="outlined">
+        <mat-card-content>
+            <form [formGroup]="formulario">
+                
+                <div class="input">
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Nombre</mat-label>
+                                <input type="text"
+                                    matInput
+                                    formControlName="name"
+                                    required
+                                />
+                        </mat-form-field>
+                    </div>  
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Apellidos</mat-label>
+                                <input type="text"
+                                    matInput
+                                    formControlName="surname"
+                                    required
+                                />
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Email</mat-label>
+                                <input type="email"
+                                    matInput
+                                    formControlName="email"
+                                    required
+                                />
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Teléfono</mat-label>
+                                <input type="number"
+                                    matInput
+                                    formControlName="phoneNumber"
+                                    required
+                                />
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field>
+                          
+                            <mat-label>Contraseña</mat-label>
+                                <input type="password" autocomplete="new-password"
+                                        matInput
+                                        formControlName="password"
+                                        required
+                            />
+                           
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container">
+                        <mat-form-field>
+                            <mat-label>Confirmar contraseña</mat-label>
+                                <input type="password" autocomplete="new-password"
+                                    matInput
+                                    formControlName="confirmPass"
+                                    required
+                                />
+                        </mat-form-field>
+                    </div>
+                   
+                </div>
+               
+                        <p class="iniciarSesion" (click)="navigateToLogin()">¿Ya tienes cuenta? Inicia sesión</p>
+                        @if(this.errorMsg){
+                            <p style="color:red; text-decoration: none; cursor:default">{{this.errorMsg}}</p>
+                        }
+                        @if(formulario.get("password")?.hasError("strongPassword") && formulario.get('password')?.touched){
+                            <mat-error>
+                                  <p style="color:red; text-decoration: none; cursor:default"> La contraseña debe tener mínimo una mayúscula, una minúscula, un número y un carácter especial.</p>                                
+                            </mat-error>
+                        }
+                        @if(formulario.get("confirmPass")?.hasError("matchPasswords") && formulario.get('confirmPass')?.touched){
+                            <mat-error>
+                                  <p style="color:red; text-decoration: none; cursor:default"> Las contraseñas no coinciden.</p>                                
+                            </mat-error>
+                        }
+                        <div class="submit">
+                                <button class="botonSubmit" (click)="addUsuario()"  [disabled]="formulario.invalid" mat-button>Regístrate</button>
+                        </div>   
+
+                </form>        
+        </mat-card-content>
+      </mat-card>
+        
+</div>

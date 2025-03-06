@@ -19,6 +19,15 @@ export class RegistroService {
     })
   }
 
+  //Verificar que el email no está en la bd
+  verifyEmail(email:string){
+    return this.http.get<Usuario>(this.rutaGlobal+"/find",{
+      params:{email:email},
+      observe:"response"
+      
+    });
+  }
+
   
 
 }

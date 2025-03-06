@@ -1,7 +1,7 @@
-  import { HttpClient, HttpResponse } from '@angular/common/http';
+  import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
   import { Injectable, OnInit } from '@angular/core';
   import { Credentials, Usuario } from '../Modelos/usuario';
-import { BehaviorSubject, map, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
   @Injectable({
@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
   })
   export class LoginService{
     usuarioSubject = new BehaviorSubject<Usuario | null>(null);
-
+    error: boolean = false;
+    errorMsg: string ="";
     constructor(private http: HttpClient, private router: Router) { 
       this.getUser().subscribe(user => {
         this.usuarioSubject.next(user);
@@ -22,6 +23,7 @@ import { Router } from '@angular/router';
     
     //Loguearse
     login(creds: Credentials) {
+      this.error= false;
       return this.http.post(this.rutaGlobal+"/url", creds,{
           observe: "response"
       }).pipe(map((response: HttpResponse<any>)=>{
@@ -48,10 +50,22 @@ import { Router } from '@angular/router';
            this.router.navigate(['/']);
   
          }
-      
+
         return body;
 
-      }))
+      }
+     ),
+     catchError((error: HttpErrorResponse) => {
+      this.error = true;
+      if (error.status === 403) {
+        this.errorMsg="Credenciales incorrectas. Por favor, revisa tus datos e inténtalo nuevamente.";
+      } else {
+        this.errorMsg="Ocurrió un error al intentar iniciar sesión. Inténtalo más tarde.";
+      }
+      return of({ success: false, error: this.errorMsg });
+
+   })
+  )
     }
 
     getToken(){
