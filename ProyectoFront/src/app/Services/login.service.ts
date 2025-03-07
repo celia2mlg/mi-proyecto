@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
  
     
     //Loguearse
-    login(creds: Credentials) {
+    login(creds: Credentials, returnUrl:string) {
       this.error= false;
       return this.http.post(this.rutaGlobal+"/url", creds,{
           observe: "response"
@@ -31,12 +31,9 @@ import { Router } from '@angular/router';
         console.log("body")
         console.log(response)
         if(response){
-          
-           const headers = response.headers;
-          
+           const headers = response.headers;        
            const bearerToken = headers.get("Authorization")!;
            console.log(response) 
-
           const token = bearerToken.replace("Bearer ","");
           console.log(token) 
 
@@ -47,7 +44,7 @@ import { Router } from '@angular/router';
            this.getUser().subscribe(user => {
             this.usuarioSubject.next(user); 
           });
-           this.router.navigate(['/']);
+           this.router.navigateByUrl(returnUrl);
   
          }
 
@@ -104,9 +101,9 @@ import { Router } from '@angular/router';
     }
 
     //Cerrar sesion
-    cerrarSesion(){
+    cerrarSesion(returnUrl: string){
       localStorage.removeItem('token'); 
       this.usuarioSubject.next(null);
-      this.router.navigate(["/"])
+      this.router.navigateByUrl(returnUrl)
     }
   }

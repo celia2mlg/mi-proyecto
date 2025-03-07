@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators ,ReactiveFormsModule, FormControlName, AbstractControl, ValidationErrors} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario,Credentials } from '../../Modelos/usuario';
 import { RegistroService } from '../../Services/registro.service';
 import { LoginService } from '../../Services/login.service';
@@ -16,12 +16,13 @@ import { LoginService } from '../../Services/login.service';
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit {
   formulario:  FormGroup;
   errorMsg?: string;
+  returnUrl?: string;
 
   constructor(private fb:FormBuilder, private router: Router, private registroService: RegistroService
-    , private loginService: LoginService 
+    , private loginService: LoginService, private route: ActivatedRoute 
   ){
     
 
@@ -38,11 +39,15 @@ export class RegistroComponent {
 
   }
 
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl']||'/';
+  }
+
 isValidPass : Boolean = false;
 
 //Boton de navegar a inicio Sesion
   navigateToLogin(){
-    this.router.navigate(['/inicioSesion']);
+    this.router.navigate(["/inicioSesion"], {queryParams:{returnUrl: this.router.url}});
   }
 
 
@@ -79,7 +84,7 @@ addUsuario(){
       
             console.log(credentials)
       
-            this.loginService.login(credentials).subscribe(
+            this.loginService.login(credentials,  this.returnUrl || '/').subscribe(
               loginResponse => {
                 console.log("login completado")
               }

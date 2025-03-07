@@ -1,10 +1,10 @@
-import {Component, signal} from '@angular/core';
+import {Component, OnInit, signal} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../Services/login.service';
 import { Usuario } from '../../Modelos/usuario';
 import { Credentials } from '../../Modelos/usuario';
@@ -18,18 +18,23 @@ import { Credentials } from '../../Modelos/usuario';
 })
 
 
-export class InicioSesionComponent {
+export class InicioSesionComponent implements OnInit {
   formulario:  FormGroup;
   usuarios : Array<Usuario>;
   errorMsg?:string;
+  returnUlr?: string;
 
-  constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService){
+  constructor(private fb:FormBuilder, private router: Router, private loginService: LoginService, private route: ActivatedRoute){
     this.usuarios = new Array<Usuario>
 
     this.formulario = this.fb.group({
       email: new FormControl('',[Validators.required, Validators.email]),
       password: new FormControl('',[Validators.required])
     })
+  }
+
+  ngOnInit(): void {
+    this.returnUlr = this.route.snapshot.queryParams['returnUrl']||'/';
   }
 
   creds : Credentials = {
@@ -45,7 +50,7 @@ export class InicioSesionComponent {
     console.log("en el compoennte")
     console.log(this.creds)
 
-    this.loginService.login(this.creds).subscribe(
+    this.loginService.login(this.creds, this.returnUlr||'/').subscribe(
       response => {
         if (!response.success) {
           this.errorMsg = response.error;

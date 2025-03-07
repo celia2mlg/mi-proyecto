@@ -32,7 +32,7 @@ export class TopBarComponent implements OnInit {
 
   //Boton inicio sesion
   navigateToLogin(){
-    this.router.navigate(['/inicioSesion'])
+    this.router.navigate(["/inicioSesion"], {queryParams:{returnUrl: this.router.url}});
   }
 
   //Logo para ir a home

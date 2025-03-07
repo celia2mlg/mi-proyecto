@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { TopBarComponent } from './Components/top-bar/top-bar.component';
 import {MatDrawer, MatSidenavModule} from '@angular/material/sidenav';
 import { LoginService } from './Services/login.service';
@@ -21,8 +21,7 @@ export class AppComponent implements OnInit{
   usuario:Usuario = {};
   menuItems: any[] = [];
 
-
-  constructor(private ngxLoader: NgxUiLoaderService, private router: Router, private loginService:LoginService) { }
+  constructor(private route: ActivatedRoute, private ngxLoader: NgxUiLoaderService, private router: Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
     this.ngxLoader.start();
@@ -57,6 +56,7 @@ export class AppComponent implements OnInit{
         this.ngxLoader.stop();
       }
     });
+
     // this.loginService.getUser().subscribe(
     //   (response)=>{
     //     this.usuario= response as Usuario;
@@ -76,8 +76,9 @@ export class AppComponent implements OnInit{
 
   //Cerrar Sesion
   cerrarSesion(){
+    const returnUrl = this.router.url;
     console.log("Estamos en cerrar sesion")
-    this.loginService.cerrarSesion();
+    this.loginService.cerrarSesion(returnUrl);
     this.drawer.close();
 
     
