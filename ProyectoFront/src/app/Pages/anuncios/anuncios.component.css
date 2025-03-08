@@ -133,8 +133,9 @@ mat-card-title{
  }
 
  .example-card .bottom button{
-   height: 120%;
+   height: 100%;
    margin-right: 5%;
+   margin-bottom: 3%; 
  }
 
  .contactSeller{
@@ -172,8 +173,18 @@ mat-card-title{
 
  .bottom{
   margin-top: auto;
+  display:flex;
+  flex-direction: row;
  }
 
+ .bottom h2{
+  margin:0%;
+  font-weight: normal;
+ }
+.price{
+  align-content: center;
+  margin-left: 4%;
+}
  mat-card-subtitle h3{
   margin-top: 2%;
   margin-bottom: 0%;

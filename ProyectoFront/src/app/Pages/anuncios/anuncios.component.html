@@ -125,7 +125,11 @@
               <button mat-fab extended (click)="openContactSeller(anuncio)">
                 <mat-icon>call</mat-icon>
                 Contactar
-              </button>                        
+              </button> 
+              <div class="price">
+                <h2>{{anuncio?.price ?? 0 | customCurrency:'€'}}</h2>                       
+
+              </div>
             </div>
           </mat-card-header>
           <mat-card-content>

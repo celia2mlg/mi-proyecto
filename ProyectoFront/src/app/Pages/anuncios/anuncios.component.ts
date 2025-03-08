@@ -18,11 +18,11 @@ import { Usuario } from '../../Modelos/usuario';
 import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
 import { PaginationHelper } from '../../Helpers/pagination-helper';
 import { PropertyType } from '../../Enum/property-type';
-
+import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
   
   @Component({
     selector: 'app-anuncios',
-    imports: [MatCardModule,MatPaginatorModule,MatToolbar,MatSelectModule,MatButtonToggleModule,MatChipsModule,MatInputModule, MatCheckboxModule, MatIconModule,MatFormFieldModule,MatButtonModule, FormsModule],
+    imports: [CustomCurrencyPipe, MatCardModule,MatPaginatorModule,MatToolbar,MatSelectModule,MatButtonToggleModule,MatChipsModule,MatInputModule, MatCheckboxModule, MatIconModule,MatFormFieldModule,MatButtonModule, FormsModule],
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './anuncios.component.html',
     styleUrl: './anuncios.component.css'
