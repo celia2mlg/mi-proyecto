@@ -92,13 +92,14 @@
               <mat-card-subtitle>
                 @if((anuncio.propertyType === propertyType.casa)||(anuncio.propertyType === propertyType.piso) ){
                   <h3>{{anuncio.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio.squareMeters}} m² &nbsp;&nbsp;{{anuncio.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
-                }@else {
-                  <h3></h3>
                 }
+                <!-- @else {
+                  <h3><mat-icon class="bed" style="visibility: hidden;">bed</mat-icon></h3>
+                } -->
               </mat-card-subtitle>
             </mat-card-title-group>
             <div class="description">
-              <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iure accusamus autem sunt dignissimos saepe consectetur ducimus et fugit numquam, eveniet non asperiores ratione deleniti soluta quam tempora rerum! Atque, placeat!</h4>
+              <h4>{{anuncio.description}}</h4>
             </div>
             <div class="bottom">
               @if(this.usuario != null){

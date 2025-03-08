@@ -26,10 +26,13 @@
   flex-wrap: wrap; 
   justify-content: center; 
   gap: 16px; 
-  
-
-
  }
+
+mat-card-title{
+  margin-bottom: 0%;
+}
+
+
  .titulo {
   flex-basis: 100%;
   margin-left: 15%;
@@ -110,11 +113,23 @@
  mat-card-header{
    display: flex;
    flex-direction: column;
+   width: 100%;
  }
 
  .description h4{
    font-size: small;
    font-weight: normal;
+   margin-top: 0;
+   display: -webkit-box;             
+   -webkit-box-orient: vertical;     
+   -webkit-line-clamp: 3;            
+   overflow: hidden;               
+ 
+ }
+
+ .description{
+  width: 100%;
+  margin-top: 2%;
  }
 
  .example-card .bottom button{
@@ -153,6 +168,15 @@
  .contactToSeller h2,h3{
    font-weight: normal;
    cursor: pointer;
+ }
+
+ .bottom{
+  margin-top: auto;
+ }
+
+ mat-card-subtitle h3{
+  margin-top: 2%;
+  margin-bottom: 0%;
  }
 
 .filtros{
