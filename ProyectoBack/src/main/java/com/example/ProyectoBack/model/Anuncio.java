@@ -53,7 +53,7 @@ public class Anuncio {
 		        )
 	List <Usuario> favoritos;
 	
-	@Column
+	@Column(length = 1000)
 	String description;
 	
 	@Column
