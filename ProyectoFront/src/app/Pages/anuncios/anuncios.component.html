@@ -1,3 +1,4 @@
+<!-- Filtros  -->
 <div class="page">
   <div class="filtros">
       <mat-card appearance="outlined"> 
@@ -72,7 +73,7 @@
     </mat-card>
   </div>
   
-  
+  <!-- Anuncios -->
   <div class="contenedor">
   @if(paginatedAnuncios.length>0){
   <div class="contenedorCards">
@@ -89,7 +90,11 @@
             <mat-card-title-group>
               <mat-card-title style="cursor:pointer" (click)="navigateTo(anuncio)">{{anuncio.propertyType}} en {{anuncio.address}}</mat-card-title>
               <mat-card-subtitle>
+                @if((anuncio.propertyType === propertyType.casa)||(anuncio.propertyType === propertyType.piso) ){
                   <h3>{{anuncio.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio.squareMeters}} m² &nbsp;&nbsp;{{anuncio.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
+                }@else {
+                  <h3></h3>
+                }
               </mat-card-subtitle>
             </mat-card-title-group>
             <div class="description">

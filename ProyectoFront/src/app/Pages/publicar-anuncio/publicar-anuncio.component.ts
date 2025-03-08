@@ -57,6 +57,7 @@ import { Router } from '@angular/router';
     sellerData: any; 
     suggestions: any[] = [];
     autocomplete!: any;
+    propertyType = PropertyType;
 
     constructor(private sanitizer: DomSanitizer, private anuncioService: AnuncioService, private loginService:LoginService, private router:Router){}
 

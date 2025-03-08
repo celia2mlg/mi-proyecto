@@ -17,6 +17,7 @@ import { LoginService } from '../../Services/login.service';
 import { Usuario } from '../../Modelos/usuario';
 import { PageEvent,MatPaginatorModule} from '@angular/material/paginator';
 import { PaginationHelper } from '../../Helpers/pagination-helper';
+import { PropertyType } from '../../Enum/property-type';
 
   
   @Component({
@@ -38,6 +39,7 @@ import { PaginationHelper } from '../../Helpers/pagination-helper';
     misFavoritosPage: boolean = false;
     misAnunciosPage: boolean = false;
     paginatedAnuncios: Array<Anuncio> = [];
+    propertyType = PropertyType;
 
     length = 0;
     pageSize = 5;

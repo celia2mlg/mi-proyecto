@@ -5,7 +5,6 @@
             <!-- Paso 1 -->
             <mat-step [stepControl]="firstFormGroup">
               <form [formGroup]="firstFormGroup">
-                <ng-template matStepLabel>Paso 1</ng-template>
                 <h1>¿Qué quiere hacer?</h1>
                 <mat-button-toggle-group formControlName="transactionType" name="fontStyle" aria-label="Font Style">
                     <mat-button-toggle value="sell">Vender</mat-button-toggle>
@@ -29,70 +28,71 @@
                   <button mat-button matStepperNext [disabled]="firstFormGroup.invalid">Siguiente</button>
                 </div>
               </form>
+
             </mat-step> 
+            @if(((firstFormGroup.get('propertyType')?.value || undefined) === propertyType.piso) || 
+            ((firstFormGroup.get('propertyType')?.value || undefined) === propertyType.casa)){
 
-            <!-- Paso 2 -->
-            <mat-step [stepControl]="secondFormGroup">
-              <form [formGroup]="secondFormGroup">
-                <ng-template matStepLabel>Paso 2</ng-template>
-                <div class="contInputs">
-                    <h1>Número de habitaciones</h1>
-                    <mat-form-field class="input">
-                        <input matInput type="number"   formControlName="numRooms" required>
-                    </mat-form-field>   
-                </div>
-                <div class="contInputs">
-                    <h1>Número de baños</h1>
-                    <mat-form-field class="input">
-                        <input matInput type="number" formControlName="numBathrooms" required>
-                    </mat-form-field>
-                </div>
-                <div class="contInputs">
-                    <h1>Metros cuadrados</h1>
-                    <mat-form-field class="input">
-                        <input matInput type="number" formControlName="squareMeters" required>
-                    </mat-form-field>
-                </div>  
-                <div class="next">
-                  <button mat-button matStepperPrevious>Atrás</button>
-                  <button mat-button matStepperNext  [disabled]="secondFormGroup.invalid">Siguiente</button>
-                </div>
-              </form>
-            </mat-step>
+  <!-- Paso 2 -->
+  <mat-step [stepControl]="secondFormGroup">
 
-            <!--Paso 3-->
-            <mat-step >
-           
-                  <ng-template matStepLabel>Paso 3</ng-template>
-                  
-                    <section class="example-section">
-                      <div class="checkbox-container">
+    <form [formGroup]="secondFormGroup">
+      <div class="contInputs">
+          <h1>Número de habitaciones</h1>
+          <mat-form-field class="input">
+              <input matInput type="number"   formControlName="numRooms" required>
+          </mat-form-field>   
+      </div>
+      <div class="contInputs">
+          <h1>Número de baños</h1>
+          <mat-form-field class="input">
+              <input matInput type="number" formControlName="numBathrooms" required>
+          </mat-form-field>
+      </div>
+      <div class="contInputs">
+          <h1>Metros cuadrados</h1>
+          <mat-form-field class="input">
+              <input matInput type="number" formControlName="squareMeters" required>
+          </mat-form-field>
+      </div>  
+      <div class="next">
+        <button mat-button matStepperPrevious>Atrás</button>
+        <button mat-button matStepperNext  [disabled]="secondFormGroup.invalid">Siguiente</button>
+      </div>
+    </form>
+  </mat-step>
 
-                        
-                            @for(option of options(); track option; let i = $index){
-                          <li>
-                            <mat-checkbox
-                              [checked]="option.completed"
-                              (change)="update($event.checked, i)"
-                            >
-                              {{option.name}}
-                            </mat-checkbox>
-                          </li>
-                        }
-                        
-                      </div>
-                      </section>
-                                            
-                  <div class="next">
-                    <button mat-button matStepperPrevious>Atrás</button>
-                    <button mat-button matStepperNext  [disabled]="firstFormGroup.invalid">Siguiente</button>
-                  </div>
-         
-              </mat-step>
+  <!--Paso 3-->
+  <mat-step >       
+          <section class="example-section">
+            <div class="checkbox-container">
+                  @for(option of options(); track option; let i = $index){
+                <li>
+                  <mat-checkbox
+                    [checked]="option.completed"
+                    (change)="update($event.checked, i)"
+                  >
+                    {{option.name}}
+                  </mat-checkbox>
+                </li>
+              }
+              
+            </div>
+            </section>
+                                  
+        <div class="next">
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-button matStepperNext  [disabled]="firstFormGroup.invalid">Siguiente</button>
+        </div>
+
+    </mat-step>
+
+
+            }
+          
               <!--Paso 4-->
               <mat-step>
                 <form [formGroup]="thirdFormGroup">
-                   <ng-template matStepLabel>Paso 4</ng-template>
                    <mat-form-field class="inputDescription">
                     <textarea matInput
                     placeholder = "Escriba una descripcion.."  
@@ -123,7 +123,6 @@
               <mat-step >
                 <form [formGroup]="fourthFormGroup">
 
-                <ng-template matStepLabel>Paso 5</ng-template>
                 <div class="contInputs">
                     <h1>Dirección</h1>
                     <mat-form-field class="inputAddress">
