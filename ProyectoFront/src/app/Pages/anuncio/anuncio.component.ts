@@ -1,4 +1,4 @@
-import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,ChangeDetectionStrategy, ChangeDetectorRef, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Anuncio, Photo } from '../../Modelos/anuncio';
 import {MatCardModule} from '@angular/material/card';
@@ -6,11 +6,14 @@ import { AnuncioService } from '../../Services/anuncio.service';
 import {MatIconModule} from "@angular/material/icon";
 import { CommonModule } from '@angular/common';
 import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
-
+import { PropertyType } from '../../Enum/property-type';
+import { Usuario } from '../../Modelos/usuario';
+import { LoginService } from '../../Services/login.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-anuncio',
-  imports: [MatCardModule,MatIconModule,CommonModule, CustomCurrencyPipe],
+  imports: [MatButtonModule,MatCardModule,MatIconModule,CommonModule, CustomCurrencyPipe],
   templateUrl: './anuncio.component.html',
   styleUrl: './anuncio.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,18 +24,21 @@ export class AnuncioComponent implements OnInit {
   anuncioId: string | null = null;
   anuncio: Anuncio | null = null;
   anuncioIdNumber : number |null = null;
-  anuncioPhoto : Photo[]= [];
+  anuncioPhoto :  Photo[]= [];
   characteristics: {name: String, value: boolean}[] =[];
+  propertyType = PropertyType;
+  usuario : Usuario={};
+  isFavorite?:boolean;
+  viewContactSeller : boolean = false;
 
-
-  constructor(private route:ActivatedRoute, private anuncioService: AnuncioService, private cdRef:ChangeDetectorRef ){}
+  constructor(private loginService: LoginService, private route:ActivatedRoute, private anuncioService: AnuncioService, private cdRef:ChangeDetectorRef ){}
 
   ngOnInit(): void {
     this.anuncioId = this.route.snapshot.paramMap.get('id');
     if(this.anuncioId != null){
-
-    this.anuncioIdNumber = parseInt(this.anuncioId);
+      this.anuncioIdNumber = parseInt(this.anuncioId);
     }
+  
     
     if(this.anuncioIdNumber){
       this.anuncioService.getAnuncioService(this.anuncioIdNumber).subscribe(
@@ -43,6 +49,19 @@ export class AnuncioComponent implements OnInit {
             this.anuncio.currentImageIndex = 0;
           }
           console.log(this.anuncio);
+          this.loginService.usuario$.subscribe(
+            (response)=>{
+              this.usuario = response as Usuario
+              if (this.anuncio?.favoritos?.some(fav => fav.id === this.usuario.id)) {
+                this.isFavorite = true;
+              }else{
+                this.isFavorite= false;
+              }
+              console.log("en oninit",this.isFavorite)
+
+            }
+          )
+         
           //Caracteristicas
 
         this.characteristics = [
@@ -93,6 +112,44 @@ export class AnuncioComponent implements OnInit {
       anuncio.currentImageIndex = index;
     }
 
+    //Dar favorito
+    fav(anuncio:Anuncio){
+      this.isFavorite = !this.isFavorite;
+  
+      if (this.isFavorite) {
+        if (!this.anuncio!.favoritos) {
+          this.anuncio!.favoritos = [];
+        }
+        this.anuncio!.favoritos.push(this.usuario);
+      } else {
+        this.anuncio!.favoritos = anuncio.favoritos?.filter(fav => fav.id !== this.usuario.id);
+      }
 
+      this.anuncioService.favBackService(this.anuncio!,this.usuario).subscribe(
+        (response) =>{
+          console.log("fav actualizado")
+        }      );
+
+        this.cdRef.detectChanges();
+        console.log("depues de dar fav",this.isFavorite)
+    }
+
+  //Abrir y cerrar información de contacto
+  openContactSeller(anuncio:Anuncio){
+    this.viewContactSeller = true;
+
+    }
+    closeContactSeller() {
+      this.viewContactSeller = false;
+      // this.selectedAnuncio = null;
+    }
+    
+    //Salir al pulsar fuera del cuadro
+    @HostListener('document:click', ['$event'])
+    onClickOutside(event: MouseEvent): void {
+      if (this.viewContactSeller && !this.anuncio?.seller) {
+        this.viewContactSeller = false;
+      }
+    }
 
 }

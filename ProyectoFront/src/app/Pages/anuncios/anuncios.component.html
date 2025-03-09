@@ -93,9 +93,7 @@
                 @if((anuncio.propertyType === propertyType.casa)||(anuncio.propertyType === propertyType.piso) ){
                   <h3>{{anuncio.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio.squareMeters}} m² &nbsp;&nbsp;{{anuncio.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
                 }
-                <!-- @else {
-                  <h3><mat-icon class="bed" style="visibility: hidden;">bed</mat-icon></h3>
-                } -->
+               
               </mat-card-subtitle>
             </mat-card-title-group>
             <div class="description">
@@ -182,23 +180,21 @@
         </div>
       }
          
-      @if(viewContactSeller == true && selectedAnuncio != null){
-        {{selectedAnuncio}}
-        <div class="contact-seller-overlay" (click)="closeContactSeller()">
-          <div class="contact-seller-container" (click)="$event.stopPropagation()">
-            <mat-card class="contactSeller" appearance="outlined">
-              <mat-card-content class="contactToSeller">
-                <h2>Contacta con el vendedor</h2>
-                <h3>{{selectedAnuncio.seller?.nombre}}&nbsp;{{selectedAnuncio.seller?.apellidos}}</h3>
-                        <a [href]="'tel:+34'+selectedAnuncio.seller?.telefono"><h3><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3></a>
-                        <a [href]="'mailto:'+selectedAnuncio.seller?.email"><h3><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3></a>
-              </mat-card-content>
-            </mat-card> 
-          </div>
-        </div>
-      }
-    
   </div>
-    
 
 </div>
+
+@if(viewContactSeller == true && selectedAnuncio != null){
+  <div class="contact-seller-overlay" (click)="closeContactSeller()">
+    <div class="contact-seller-container" (click)="$event.stopPropagation()">
+      <mat-card class="contactSeller" appearance="outlined">
+        <mat-card-content class="contactToSeller">
+          <h2>Contacta con el vendedor</h2>
+          <h3>{{selectedAnuncio.seller?.nombre}}&nbsp;{{selectedAnuncio.seller?.apellidos}}</h3>
+                  <a [href]="'tel:+34'+selectedAnuncio.seller?.telefono"><h3><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3></a>
+                  <a [href]="'mailto:'+selectedAnuncio.seller?.email"><h3><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3></a>
+        </mat-card-content>
+      </mat-card> 
+    </div>
+  </div>
+}

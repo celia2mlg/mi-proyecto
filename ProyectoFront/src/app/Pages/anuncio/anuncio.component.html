@@ -27,7 +27,10 @@
     </div>
     <div class="divDescripcion">
         <h2 class="title" style="font-weight:500;">{{anuncio?.propertyType}} en {{anuncio?.address}}</h2>
-        <h3 >{{anuncio?.description}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto est nihil doloremque dignissimos enim, nobis ad corporis veniam officiis aperiam facere odit eaque doloribus possimus explicabo aliquam ut tempore adipisci.s</h3>
+        <h3 >{{anuncio?.description}} </h3>
+        @if((anuncio?.propertyType === propertyType.casa)||(anuncio?.propertyType === propertyType.piso) ){
+            <h3>{{anuncio?.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio?.squareMeters}} m² &nbsp;&nbsp;{{anuncio?.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
+          }
         <h2 class="title">Caracteristicas</h2>
         <div class="characteristics">
                 @for(characteristic of characteristics; track characteristic){
@@ -35,9 +38,50 @@
                     {{characteristic.value ? "Si" : "No"}}</h3>
                 }
         </div>
-        <h1>{{anuncio?.price ?? 0 | customCurrency:'€'}}</h1>
-            
-    
+        <div class="bottom">
+            <h1>{{anuncio?.price ?? 0 | customCurrency:'€'}}</h1>
+
+            <div class="botones">
+                @if(this.usuario != null){
+                    @if(isFavorite){
+                      <button class="favoritoTrue" (click)="fav(anuncio!)" mat-fab extended>
+                        <mat-icon>favorite</mat-icon>
+                        Favorite
+                      </button>  
+                    }@else{
+                    <button (click)="fav(anuncio!)" mat-fab extended>
+                      <mat-icon>favorite</mat-icon>
+                      Favorite
+                    </button>
+                  }
+                  }@else {
+                    <button disabled mat-fab extended>
+                      <mat-icon>favorite</mat-icon>
+                      Favorite
+                    </button>
+                  }
+        
+                  <button mat-fab extended class="contactar" (click)="openContactSeller(anuncio!)">
+                    <mat-icon>call</mat-icon>
+                    Contactar
+                  </button> 
+            </div>
+        </div>
+         
     </div>
 </div>
 
+@if(viewContactSeller == true && anuncio != null){
+    <div class="contact-seller-overlay" (click)="closeContactSeller()">
+      <div class="contact-seller-container" (click)="$event.stopPropagation()">
+        <mat-card class="contactSeller" appearance="outlined">
+          <mat-card-content class="contactToSeller">
+            <h2>Contacta con el vendedor</h2>
+            <h3>{{anuncio.seller?.nombre}}&nbsp;{{anuncio.seller?.apellidos}}</h3>
+                    <a [href]="'tel:+34'+anuncio.seller?.telefono"><h3><mat-icon>call</mat-icon>  {{anuncio.seller?.telefono}}</h3></a>
+                    <a [href]="'mailto:'+anuncio.seller?.email"><h3><mat-icon>mail</mat-icon>  {{anuncio.seller?.email}}</h3></a>
+          </mat-card-content>
+        </mat-card> 
+      </div>
+    </div>
+  }

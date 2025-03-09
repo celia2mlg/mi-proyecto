@@ -108,7 +108,7 @@ import { PaginationHelper } from '../Helpers/pagination-helper';
         const headers = new HttpHeaders({
           'Authorization': `Bearer ${token}` 
         });
-
+        console.log(usuario)
         return this.http.post<Anuncio>(this.rutaGlobal+"anuncio/"+anuncio.id+"/favorito/"+usuario.email,{headers: headers }).pipe(
           map(response=> response));
 
