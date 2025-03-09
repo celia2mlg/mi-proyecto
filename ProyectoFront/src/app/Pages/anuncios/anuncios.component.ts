@@ -50,6 +50,8 @@ import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
     showPageSizeOptions = true;
     showFirstLastButtons = true;
     disabled = false;
+    dataLoaded = false;
+
   
     pageEvent!: PageEvent;
     handlePageEvent(e: PageEvent) {
@@ -132,6 +134,7 @@ import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
           }else{
             console.log("No hay anuncios")
           }
+          this.dataLoaded = true;
         }
       );
     }

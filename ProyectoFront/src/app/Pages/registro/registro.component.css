@@ -29,10 +29,12 @@ p{
   font-size: small; 
   font-style: italic; 
   text-decoration: underline;
-  margin-top: 0;
+  margin-top: 6%;
   margin-bottom: -5%;
   cursor: pointer;
 }
+
+
 mat-card-content, 
 form {
   height: 100%;

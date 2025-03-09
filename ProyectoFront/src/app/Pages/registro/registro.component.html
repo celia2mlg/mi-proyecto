@@ -75,12 +75,12 @@
                         }
                         @if(formulario.get("password")?.hasError("strongPassword") && formulario.get('password')?.touched){
                             <mat-error>
-                                  <p style="color:red; text-decoration: none; cursor:default"> La contraseña debe tener mínimo una mayúscula, una minúscula, un número y un carácter especial.</p>                                
+                                  <p style="color:red; margin-top:0%; text-decoration: none; cursor:default"> La contraseña debe tener mínimo una mayúscula, una minúscula, un número y un carácter especial.</p>                                
                             </mat-error>
                         }
                         @if(formulario.get("confirmPass")?.hasError("matchPasswords") && formulario.get('confirmPass')?.touched){
                             <mat-error>
-                                  <p style="color:red; text-decoration: none; cursor:default"> Las contraseñas no coinciden.</p>                                
+                                  <p style="color:red; margin-top: 0%; text-decoration: none; cursor:default"> Las contraseñas no coinciden.</p>                                
                             </mat-error>
                         }
                         <div class="submit">
