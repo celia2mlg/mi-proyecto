@@ -39,6 +39,8 @@ public class WebSecurityConfig {
 	        .authorizeHttpRequests(request ->
 	            request.requestMatchers("/anuncio/publicarAnuncio")
 	                .authenticated()
+	                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/index.html")
+	                .permitAll()
 	                .requestMatchers("/anuncio/getAnuncios")
 	                .permitAll()
 	                .requestMatchers("/anuncio/getAnuncio/**")
