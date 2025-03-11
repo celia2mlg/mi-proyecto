@@ -3,12 +3,12 @@ import { InicioSesionComponent } from './Pages/inicio-sesion/inicio-sesion.compo
 import { RegistroComponent } from './Pages/registro/registro.component';
 import { PublicarAnuncioComponent } from './Pages/publicar-anuncio/publicar-anuncio.component';
 import { AnunciosComponent } from './Pages/anuncios/anuncios.component';
-import { authGuard } from './Helpers/auth.guard';
+import { authGuard } from './Guards/auth.guard';
 import { HomeComponent } from './Pages/home/home.component';
 import { AnuncioComponent } from './Pages/anuncio/anuncio.component';
 import { MiPerfilComponent } from './Pages/mi-perfil/mi-perfil.component';
 import { NotFoundComponent } from './Pages/not-found/not-found.component';
-import { ValidarUsuarioGuard } from './Helpers/validar-usuario-guard';
+import { ValidarUsuarioGuard } from './Guards/validar-usuario-guard';
 import { RestrictedPageComponent } from './Pages/restricted-page/restricted-page.component';
 
 

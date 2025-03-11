@@ -9,11 +9,11 @@ import { LoginService } from '../../Services/login.service';
 import { PaginationHelper } from '../../Helpers/pagination-helper';
 import { Router } from '@angular/router';
 import {MatTabChangeEvent, MatTabsModule} from '@angular/material/tabs';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-mi-perfil',
-  imports: [MatCardModule,MatTabsModule,MatIconModule,MatPaginatorModule],
+  imports: [MatCardModule,MatButtonModule,MatTabsModule,MatIconModule,MatPaginatorModule],
   templateUrl: './mi-perfil.component.html',
   styleUrl: './mi-perfil.component.css'
 })

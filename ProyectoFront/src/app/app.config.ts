@@ -9,7 +9,7 @@ import { NgxUiLoaderModule, NgxUiLoaderConfig } from 'ngx-ui-loader';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  fgsType: 'square-jelly-box',      
+  fgsType: 'three-strings',      
   fgsSize: 60,                      
   fgsColor: 'rgb(44, 112, 189)',              
   overlayColor: 'rgb(255, 255, 255)'     
