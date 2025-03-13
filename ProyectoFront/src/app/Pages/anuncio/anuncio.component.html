@@ -4,7 +4,7 @@
     @if(anuncio){
         <div class="imagenContent">
             
-                @if(anuncio.photo && anuncio.currentImageIndex !== undefined){
+                @if(anuncio.photo && anuncio.photo.length > 0 && anuncio.currentImageIndex !== undefined){
                     <mat-icon class="flecha izquierda" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
                     <img mat-card-lg-image    [src]="'data:image/jpeg;base64,' + anuncioPhoto[anuncio.currentImageIndex].photo" alt="Imagen de {{ anuncio.propertyType }}">
                     <mat-icon class="flecha derecha" [class.disabled]="anuncio.currentImageIndex==anuncio.photo.length-1"(click)="nextImage(anuncio)">chevron_right</mat-icon>
