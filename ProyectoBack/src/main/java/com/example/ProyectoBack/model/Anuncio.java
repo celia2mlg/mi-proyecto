@@ -5,7 +5,6 @@ import java.util.List;
 import com.example.ProyectoBack.enumeraciones.PropertyState;
 import com.example.ProyectoBack.enumeraciones.PropertyType;
 import com.example.ProyectoBack.enumeraciones.TransactionType;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -19,7 +18,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;

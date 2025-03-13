@@ -26,7 +26,6 @@ public class UsuarioService {
 		return this.usuarioRepository.findAll();
 	}
 
-	//NO COMPROBADO AUN
 	//Añadir usuario
 	public Usuario addUsuario(Usuario usuario) {
 		return this.usuarioRepository.save(usuario);
