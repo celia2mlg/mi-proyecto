@@ -1,4 +1,4 @@
-package com.example.ProyectoBack.config;
+/*package com.example.ProyectoBack.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,3 +29,4 @@ public class Config implements WebMvcConfigurer{
 		
 	}
 
+*/

@@ -98,6 +98,7 @@ import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
             this.activatedRoute.queryParams.subscribe(params =>{
               if(Object.keys(params).length>0){
                 this.filtros = {...this.filtros, ...params};
+                this.router.navigate([], { relativeTo: this.activatedRoute, queryParams: {} });
               }
                 this.getAnuncios();
               
@@ -188,6 +189,8 @@ import { CustomCurrencyPipe } from '../../Pipes/custom-currency.pipe';
       this.anunciosFiltrados = this.anuncioService.filtrosService(this.anuncios,this.filtros);
       console.log(this.anunciosFiltrados)
       console.log("estamos en filtrar()")
+      this.length = this.anunciosFiltrados.length;
+      this.pageIndex = 0;
       this.paginatedAnuncios=PaginationHelper.getPaginatedData(this.anunciosFiltrados,this.pageIndex,this.pageSize,);
     }
 

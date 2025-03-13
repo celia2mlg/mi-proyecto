@@ -1,9 +1,11 @@
 package com.example.ProyectoBack.security;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -14,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.filter.CharacterEncodingFilter;
+
 
 @Configuration
 @EnableWebSecurity
@@ -60,7 +64,8 @@ public class WebSecurityConfig {
 	            config.addAllowedMethod("OPTIONS");
 	            config.addAllowedHeader("*");
 	            config.setAllowCredentials(true);
-	            config.addExposedHeader("Authorization");  
+	            config.addExposedHeader("Authorization");
+	            config.setExposedHeaders(List.of("*"));  
 	            cors.configurationSource(request -> config);
 	        })
 	        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -89,6 +94,17 @@ public class WebSecurityConfig {
 	    return authManagerBuilder.build();        
     	
     	
+    }
+    
+    @Bean
+    public FilterRegistrationBean<CharacterEncodingFilter> characterEncodingFilterRegistration() {
+        CharacterEncodingFilter filter = new CharacterEncodingFilter();
+        filter.setEncoding("UTF-8");
+        filter.setForceEncoding(true);
+        
+        FilterRegistrationBean<CharacterEncodingFilter> registrationBean = new FilterRegistrationBean<>(filter);
+        registrationBean.setOrder(0); 
+        return registrationBean;
     }
 
 }
