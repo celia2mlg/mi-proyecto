@@ -1,25 +1,19 @@
 <mat-drawer-container class="example-container" [hasBackdrop]="true">
-    <mat-drawer #drawer [position]="'end'" [autoFocus]="false" [mode]="'over'">
-        @for(item of menuItems; track item){
-          <div class="opDiv">
-              <p class="op" (click)="item.action()">{{item.label}}</p>
-              @if(item.icon){
-                <mat-icon>{{item.icon}}</mat-icon>
-              }          
-          </div>
+  <mat-drawer #drawer [position]="'end'" [autoFocus]="false" [mode]="'over'">
+    @for (item of menuItems; track item) {
+      <div class="opDiv">
+        <p class="op" (click)="item.action()">{{ item.label }}</p>
+        @if (item.icon) {
+          <mat-icon>{{ item.icon }}</mat-icon>
         }
-          
-    </mat-drawer>
-    <mat-drawer-content>
-        <app-top-bar class="topBar" (menuClicked)="toggleDrawer()"></app-top-bar>
+      </div>
+    }
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-top-bar class="topBar" (menuClicked)="toggleDrawer()"></app-top-bar>
 
-        
-      <router-outlet></router-outlet>
-      <app-footer></app-footer>
-
-    </mat-drawer-content>
-
-  </mat-drawer-container>
-<ngx-ui-loader>
-
-</ngx-ui-loader>
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-drawer-content>
+</mat-drawer-container>
+<ngx-ui-loader> </ngx-ui-loader>

@@ -5,12 +5,12 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-restricted-page',
   imports: [MatButtonModule],
   templateUrl: './restricted-page.component.html',
-  styleUrl: './restricted-page.component.css'
+  styleUrl: './restricted-page.component.css',
 })
 export class RestrictedPageComponent {
-  constructor(private router:Router){}
+  constructor(private router: Router) {}
 
-  navigateTo(){
+  navigateTo() {
     this.router.navigate(['/']);
   }
 }

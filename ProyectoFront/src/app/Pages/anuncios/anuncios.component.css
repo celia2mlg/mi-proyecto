@@ -1,241 +1,231 @@
-.page{
- display: flex;
+.page {
+  display: flex;
   min-height: 100vh;
   height: auto;
   justify-content: center;
-
 }
 
 .example-card {
-    width: 60%;
-    margin-bottom: 8px;
-  }
+  width: 60%;
+  margin-bottom: 8px;
+}
 
-
- .contenedor{
+.contenedor {
   padding-top: 2%;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;  
-  height: auto; 
+  min-height: 100vh;
+  height: auto;
   width: 70%;
-  
- } 
- .contenedorCards{
+}
+.contenedorCards {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: center; 
-  gap: 16px; 
- }
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
 
-mat-card-title{
+mat-card-title {
   margin-bottom: 0%;
 }
 
-
- .titulo {
+.titulo {
   flex-basis: 100%;
   margin-left: 15%;
-  margin-bottom:0;
+  margin-bottom: 0;
 }
 
-.titulo h1{
+.titulo h1 {
   font-weight: lighter;
   margin-top: 0;
   margin-bottom: 0;
-
 }
 
- .contNoEncontrado{
-   margin-left: 25%;
-   margin-top:10%;
- }
+.contNoEncontrado {
+  margin-left: 25%;
+  margin-top: 10%;
+}
 
- .imgNoEncontrada{
+.imgNoEncontrada {
   width: 30%;
+}
 
- }
+.example-card {
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 2%;
+  padding-right: 1%;
+  width: 75%;
+}
 
- .example-card{
-   flex-direction: row;
-   justify-content: space-between;
-   padding-bottom: 2%;
-   padding-right: 1%;
-   width: 75%;
+.image-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+  align-self: flex-end;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
- }
- 
+.rightArrow {
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 2;
+  top: 50%;
+  right: 5%;
+  font-size: xx-large;
+  cursor: pointer;
+}
 
- .image-container{
- 
-   display:flex;
-   align-items: center;        
-   justify-content: center;
-   margin-top: 10%;
-   align-self: flex-end;
-   position: relative;
-   width: 100%;
-   height: 100%;
- }
+.leftArrow {
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 2;
+  top: 50%;
+  left: 0%;
+  font-size: xx-large;
+  cursor: pointer;
+}
 
- .rightArrow{
-   position:absolute;
-   transform: translateY(-50%);
-   z-index: 2; 
-   top:50%;
-   right: 5%;
-   font-size: xx-large;
-   cursor: pointer;
- }
+.leftArrow.disabled,
+.rightArrow.disabled {
+  cursor: auto;
+  opacity: 0.5;
+}
 
- .leftArrow{
-   position:absolute;
-   transform: translateY(-50%);
-   z-index: 2; 
-   top:50%;
-   left:0%;
-   font-size: xx-large;
-   cursor: pointer;
- } 
+.bed {
+  vertical-align: bottom;
+}
+.bathtub {
+  vertical-align: middle;
+}
 
- .leftArrow.disabled, .rightArrow.disabled {
-   cursor:auto;
-   opacity:0.5 ;
- }
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
- .bed{
-   vertical-align: bottom;
- }
- .bathtub{
-   vertical-align: middle;
- }
+.description h4 {
+  font-size: small;
+  font-weight: normal;
+  margin-top: 0;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
 
- mat-card-header{
-   display: flex;
-   flex-direction: column;
-   width: 100%;
- }
-
- .description h4{
-   font-size: small;
-   font-weight: normal;
-   margin-top: 0;
-   display: -webkit-box;             
-   -webkit-box-orient: vertical;     
-   -webkit-line-clamp: 3;            
-   overflow: hidden;               
- 
- }
-
- .description{
+.description {
   width: 100%;
   margin-top: 2%;
- }
+}
 
- .example-card .bottom button{
-   height: 100%;
-   margin-right: 5%;
-   margin-bottom: 3%; 
- }
+.example-card .bottom button {
+  height: 100%;
+  margin-right: 5%;
+  margin-bottom: 3%;
+}
 
- .contactSeller{
-   z-index: 5552; 
-   width: 100%;
-   height: 100%;
- }
- .contact-seller-overlay {
-   position: fixed; 
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(255, 255, 255, 0.7); 
-   display: flex;
-   justify-content: center; 
-   align-items: center; 
-   z-index: 9999; 
- }
- 
- .contact-seller-container {
-   text-align: center;
-   padding: 20px;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   width: 30%;
-   height: 60%;
- }
- 
- .contactToSeller h2,h3{
-   font-weight: normal;
-   cursor: pointer;
- }
+.contactSeller {
+  z-index: 5552;
+  width: 100%;
+  height: 100%;
+}
+.contact-seller-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
 
- .bottom{
-  margin-top: auto;
-  display:flex;
-  flex-direction: row;
- }
+.contact-seller-container {
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  height: 60%;
+}
 
- .bottom h2{
-  margin:0%;
+.contactToSeller h2,
+h3 {
   font-weight: normal;
- }
-.price{
+  cursor: pointer;
+}
+
+.bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.bottom h2 {
+  margin: 0%;
+  font-weight: normal;
+}
+.price {
   align-content: center;
   margin-left: 4%;
 }
- mat-card-subtitle h3{
+mat-card-subtitle h3 {
   margin-top: 2%;
   margin-bottom: 0%;
- }
+}
 
-.filtros{
+.filtros {
   width: 30%;
   margin: 2%;
 }
-a{
+a {
   text-decoration: none;
-  color:black;
+  color: black;
 }
 
-
-.favoritoTrue{
+.favoritoTrue {
   color: palevioletred;
 }
 
 .paginator {
   display: flex;
-  justify-content: flex-start; 
-  width: 100%; 
+  justify-content: flex-start;
+  width: 100%;
   margin-left: 12%;
 }
 
-mat-form-field{
+mat-form-field {
   width: 80%;
   margin-left: 10%;
-  margin-top:5%;
-  padding: 0% ;
+  margin-top: 5%;
+  padding: 0%;
 }
 
-.title{
+.title {
   margin-left: 10%;
 }
 
-mat-button-toggle-group{
-  margin:5%;
+mat-button-toggle-group {
+  margin: 5%;
   margin-left: 8%;
-  margin-right: 15%;  
+  margin-right: 15%;
   padding-top: 5%;
   padding-bottom: 5%;
-
 }
 
-mat-checkbox{
+mat-checkbox {
   margin-left: 10%;
 }
 
-mat-chip-listbox{
-  margin:3%;
+mat-chip-listbox {
+  margin: 3%;
   margin-left: 10%;
 }

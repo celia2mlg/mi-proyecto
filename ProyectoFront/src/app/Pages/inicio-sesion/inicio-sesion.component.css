@@ -1,38 +1,35 @@
 .example-container mat-form-field + mat-form-field {
-    margin-left: 8px;
-  }
+  margin-left: 8px;
+}
 
-  mat-card  {
-    width: 22%;
-    height: 60%;
-    justify-self: center;
-    margin-bottom: 10%;
+mat-card {
+  width: 22%;
+  height: 60%;
+  justify-self: center;
+  margin-bottom: 10%;
+}
 
-  }
-  
-  .page{
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 3%;
+.page {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3%;
+}
 
-  }
+.botonSubmit {
+  font-size: 18px;
+}
 
-  .botonSubmit{
-    font-size: 18px;
-  }
-
-
-p{
-  font-size: small; 
-  font-style: italic; 
+p {
+  font-size: small;
+  font-style: italic;
   text-decoration: underline;
   margin-top: 0px;
   cursor: pointer;
 }
 
-.submit{
+.submit {
   position: absolute;
   right: 4%;
   bottom: 4%;

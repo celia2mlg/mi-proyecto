@@ -1,4 +1,4 @@
 export enum TransactionType {
-    sell = 'Vender',
-    rent = 'Alquilar'
+  sell = 'Vender',
+  rent = 'Alquilar',
 }

@@ -1,85 +1,76 @@
-
-
 <div class="principal">
-  @if(usuarioRegistrado?.nombre){
-    <h1 class="bienvenido" style="font-weight: normal;">Bienvenido/a {{usuarioRegistrado?.nombre}}</h1>
-  
+  @if (usuarioRegistrado?.nombre) {
+    <h1 class="bienvenido" style="font-weight: normal">
+      Bienvenido/a {{ usuarioRegistrado?.nombre }}
+    </h1>
   }
   <div class="img1">
-    <img src="/assets/images/fondo moderno recortado.PNG" >
-    <h2 style="font-weight: normal;">
-      Tu hogar te está esperando
-    </h2>
+    <img src="/assets/images/fondo moderno recortado.PNG" />
+    <h2 style="font-weight: normal">Tu hogar te está esperando</h2>
     <mat-card class="card" appearance="outlined">
       <mat-card-content>
-        
         <div class="transactionType">
-          <mat-button-toggle-group [(ngModel)]="filtros['transactionType']" appearance="legacy" >
+          <mat-button-toggle-group
+            [(ngModel)]="filtros['transactionType']"
+            appearance="legacy"
+          >
             <mat-button-toggle value="sell">Comprar</mat-button-toggle>
-            <mat-button-toggle value="rent" >Alquilar</mat-button-toggle>
-        </mat-button-toggle-group>
+            <mat-button-toggle value="rent">Alquilar</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
 
-         <div class="barraBusqueda">
+        <div class="barraBusqueda">
           <mat-form-field class="input" appearance="outline">
             <mat-label>Calle, ciudad, país...</mat-label>
-            <input matInput  [(ngModel)]="filtros['address']" >
+            <input matInput [(ngModel)]="filtros['address']" />
           </mat-form-field>
-            <button class="lupa" (click)="navigateWithFilters()"  mat-fab extended aria-label="Example icon button with a delete icon">
-              <mat-icon>search</mat-icon>
-              Buscar
-            </button>
-
-         </div>
-        <div class="busquedaPersonalizada" >
-          <button class="boton"(click)="navigateFilterPage()" mat-button>Personaliza tu búsqueda</button>
+          <button
+            class="lupa"
+            (click)="navigateWithFilters()"
+            mat-fab
+            extended
+            aria-label="Example icon button with a delete icon"
+          >
+            <mat-icon>search</mat-icon>
+            Buscar
+          </button>
         </div>
-       
-
+        <div class="busquedaPersonalizada">
+          <button class="boton" (click)="navigateFilterPage()" mat-button>
+            Personaliza tu búsqueda
+          </button>
+        </div>
       </mat-card-content>
-
-    </mat-card> 
-   
+    </mat-card>
   </div>
 
   <div class="img2">
-    <img src="/assets/images/fondo2.JPG" >
+    <img src="/assets/images/fondo2.JPG" />
     <mat-card class="card2" appearance="outlined">
       <mat-card-content>
-        <h3 style="font-weight: normal;">
-          Publica tu casa en nuestra web
-        </h3>
-        <div class="publicarAnuncio" >
-          <button (click)="navigateToPublicar()" mat-button>Publica tu anuncio</button>
+        <h3 style="font-weight: normal">Publica tu casa en nuestra web</h3>
+        <div class="publicarAnuncio">
+          <button (click)="navigateToPublicar()" mat-button>
+            Publica tu anuncio
+          </button>
         </div>
       </mat-card-content>
-
-    </mat-card> 
+    </mat-card>
   </div>
   <div class="img3">
-    <img src="/assets/images/fondollaveRecortado.JPG" >
+    <img src="/assets/images/fondollaveRecortado.JPG" />
     <mat-card class="card" appearance="outlined">
-      <h3 style="font-weight: normal;">
-        Registrate y disfruta de sus ventajas
-      </h3>
+      <h3 style="font-weight: normal">Registrate y disfruta de sus ventajas</h3>
       <mat-card-content class="loginDiv">
-       
-        <div class="inicioSesion" >
-          <h3 style="font-weight: normal;">
-            ¿Ya tienes cuenta?
-          </h3>
+        <div class="inicioSesion">
+          <h3 style="font-weight: normal">¿Ya tienes cuenta?</h3>
           <button (click)="navigateToLogin()" mat-button>Inicia sesión</button>
         </div>
-        <div class="registro" >
-          <h3 style="font-weight: normal;">
-            ¿Eres nuevo? Regístrate
-          </h3>
+        <div class="registro">
+          <h3 style="font-weight: normal">¿Eres nuevo? Regístrate</h3>
           <button (click)="navigateToRegister()" mat-button>Regístrate</button>
         </div>
       </mat-card-content>
-
-    </mat-card> 
+    </mat-card>
   </div>
-
-
 </div>

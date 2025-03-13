@@ -1,53 +1,47 @@
-.example-container mat-form-field  {
-    margin-left: 8px;
+.example-container mat-form-field {
+  margin-left: 8px;
+}
 
-  }
+mat-card {
+  width: 22%;
+  height: 60vh;
+  justify-self: center;
+  margin-bottom: 10%;
+}
 
-  mat-card  {
-    width: 22%;
-    height: 60vh;
-    justify-self: center;
-    margin-bottom: 10%;
+.page {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 3%;
+}
 
-  }
+.botonSubmit {
+  font-size: 18px;
+}
 
-  .page{
-    height: 90vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding-top: 3%;
-
-  }
-
-  .botonSubmit{
-    font-size: 18px;
-  }
- 
-
-p{
-  font-size: small; 
-  font-style: italic; 
+p {
+  font-size: small;
+  font-style: italic;
   text-decoration: underline;
   margin-top: 6%;
   margin-bottom: -5%;
   cursor: pointer;
 }
 
-
-mat-card-content, 
+mat-card-content,
 form {
   height: 100%;
 }
 
-
-.submit{
+.submit {
   position: absolute;
   right: 4%;
   bottom: 4%;
 }
 
-.input{
+.input {
   overflow-y: auto;
   max-height: 60%;
 }

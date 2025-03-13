@@ -1,66 +1,89 @@
 <!-- Filtros  -->
 <div class="page">
   <div class="filtros">
-      <mat-card appearance="outlined"> 
-          <mat-toolbar color="primary">
-            <h1>Personaliza tu búsqueda</h1>
-          </mat-toolbar>    
-          <mat-label class="title">¿Que quieres hacer?</mat-label>
-        <mat-button-toggle-group  [(ngModel)]="filtros.transactionType" appearance="legacy" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle value="sell">Comprar</mat-button-toggle>
-          <mat-button-toggle value="rent">Alquilar</mat-button-toggle>
-        </mat-button-toggle-group>    
+    <mat-card appearance="outlined">
+      <mat-toolbar color="primary">
+        <h1>Personaliza tu búsqueda</h1>
+      </mat-toolbar>
+      <mat-label class="title">¿Que quieres hacer?</mat-label>
+      <mat-button-toggle-group
+        [(ngModel)]="filtros.transactionType"
+        appearance="legacy"
+        name="fontStyle"
+        aria-label="Font Style"
+      >
+        <mat-button-toggle value="sell">Comprar</mat-button-toggle>
+        <mat-button-toggle value="rent">Alquilar</mat-button-toggle>
+      </mat-button-toggle-group>
       <mat-label class="title">¿Donde quieres buscar?</mat-label>
-      <mat-form-field   appearance="outline" >
+      <mat-form-field appearance="outline">
         <mat-label>Direccion</mat-label>
-        <input matInput  [(ngModel)]="filtros.address" style="height: 2%;" type="text">
+        <input
+          matInput
+          [(ngModel)]="filtros.address"
+          style="height: 2%"
+          type="text"
+        />
       </mat-form-field>
       <mat-label class="title">Precio</mat-label>
-      <mat-form-field appearance="outline" >
+      <mat-form-field appearance="outline">
         <mat-label>Precio minimo</mat-label>
-        <input matInput type="number" [(ngModel)]="filtros.minPrice">
+        <input matInput type="number" [(ngModel)]="filtros.minPrice" />
       </mat-form-field>
-      <mat-form-field appearance="outline" > 
+      <mat-form-field appearance="outline">
         <mat-label>Precio maximo</mat-label>
-        <input matInput type="number" [(ngModel)]="filtros.maxPrice">
+        <input matInput type="number" [(ngModel)]="filtros.maxPrice" />
       </mat-form-field>
       <mat-label class="title">Filtros</mat-label>
-        <mat-checkbox [(ngModel)]="filtros.elevator">Ascensor</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.pool">Piscina</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.garage">Garaje</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.paddleCourt">Pista de pádel</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.balcony">Balcón</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.terrace">Terraza</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.seaViews">Vistas al mar</mat-checkbox>
-        <mat-checkbox [(ngModel)]="filtros.storageRoom">Trastero</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.elevator">Ascensor</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.pool">Piscina</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.garage">Garaje</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.paddleCourt"
+        >Pista de pádel</mat-checkbox
+      >
+      <mat-checkbox [(ngModel)]="filtros.balcony">Balcón</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.terrace">Terraza</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.seaViews">Vistas al mar</mat-checkbox>
+      <mat-checkbox [(ngModel)]="filtros.storageRoom">Trastero</mat-checkbox>
 
-        <mat-label class="title">Número de habitacions</mat-label>
-        <mat-chip-listbox [(ngModel)]="filtros.numRooms" aria-label="Cutest dog breeds">
-          @for(op of numRoomsOp; track op){
-            <mat-chip-option [value]="op">+{{op}}</mat-chip-option>
-          }
-        </mat-chip-listbox> 
+      <mat-label class="title">Número de habitacions</mat-label>
+      <mat-chip-listbox
+        [(ngModel)]="filtros.numRooms"
+        aria-label="Cutest dog breeds"
+      >
+        @for (op of numRoomsOp; track op) {
+          <mat-chip-option [value]="op">+{{ op }}</mat-chip-option>
+        }
+      </mat-chip-listbox>
 
-        <mat-label class="title">Número de baños</mat-label>
-        <mat-chip-listbox [(ngModel)]="filtros.numBathrooms" aria-label="Cutest dog breeds">
-          @for(op of numBathRoomsOp; track op){
-            <mat-chip-option [value]="op">+{{op}}</mat-chip-option>
-          }
-        </mat-chip-listbox>
+      <mat-label class="title">Número de baños</mat-label>
+      <mat-chip-listbox
+        [(ngModel)]="filtros.numBathrooms"
+        aria-label="Cutest dog breeds"
+      >
+        @for (op of numBathRoomsOp; track op) {
+          <mat-chip-option [value]="op">+{{ op }}</mat-chip-option>
+        }
+      </mat-chip-listbox>
       <mat-label class="title">Tamaño mínimo</mat-label>
-      <mat-form-field style="width: 30%;" appearance="outline" >
+      <mat-form-field style="width: 30%" appearance="outline">
         <mat-label>Tamaño desde</mat-label>
-        <input matInput type="number" [(ngModel)]="filtros.squareMeters">
+        <input matInput type="number" [(ngModel)]="filtros.squareMeters" />
       </mat-form-field>
-      
+
       <mat-label class="title">Estado</mat-label>
-        <mat-button-toggle-group  [(ngModel)]="filtros.propertyState" appearance="legacy" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle value="newBuild">Obra nueva</mat-button-toggle>
-          <mat-button-toggle value="secondHand">Segunda mano</mat-button-toggle>
-        </mat-button-toggle-group>
+      <mat-button-toggle-group
+        [(ngModel)]="filtros.propertyState"
+        appearance="legacy"
+        name="fontStyle"
+        aria-label="Font Style"
+      >
+        <mat-button-toggle value="newBuild">Obra nueva</mat-button-toggle>
+        <mat-button-toggle value="secondHand">Segunda mano</mat-button-toggle>
+      </mat-button-toggle-group>
 
       <mat-label class="title">Tipo de vivienda</mat-label>
-      <mat-form-field appearance="outline" >
+      <mat-form-field appearance="outline">
         <mat-select [(ngModel)]="filtros.propertyType">
           <mat-option value="piso">Piso</mat-option>
           <mat-option value="casa">Casa</mat-option>
@@ -69,135 +92,201 @@
           <mat-option value="garaje">Garaje</mat-option>
         </mat-select>
       </mat-form-field>
-        <button style="font-size: larger;" mat-raised-button (click)="filtrar()">Filtrar</button>
+      <button style="font-size: larger" mat-raised-button (click)="filtrar()">
+        Filtrar
+      </button>
     </mat-card>
   </div>
-  
+
   <!-- Anuncios -->
   <div class="contenedor">
-  @if(paginatedAnuncios.length>0){
-  <div class="contenedorCards">
-    <div class="titulo">
-      @if(this.misFavoritosPage){
-        <h1>Favoritos</h1>
-      }@else if(this.misAnunciosPage){
-        <h1>Publicaciones</h1>
-      }
-    </div>
-    @for(anuncio of paginatedAnuncios; track anuncio){
-      <mat-card class="example-card" appearance="outlined">
-          <mat-card-header>
-            <mat-card-title-group>
-              <mat-card-title style="cursor:pointer" (click)="navigateTo(anuncio)">{{anuncio.propertyType}} en {{anuncio.address}}</mat-card-title>
-              <mat-card-subtitle>
-                @if((anuncio.propertyType === propertyType.casa)||(anuncio.propertyType === propertyType.piso) ){
-                  <h3>{{anuncio.numRooms}}&nbsp;<mat-icon class="bed">bed</mat-icon>&nbsp;&nbsp; {{anuncio.squareMeters}} m² &nbsp;&nbsp;{{anuncio.numBathrooms}}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon></h3>
-                }
-               
-              </mat-card-subtitle>
-            </mat-card-title-group>
-            <div class="description">
-              <h4>{{anuncio.description}}</h4>
-            </div>
-            <div class="bottom">
-              @if(this.usuario != null){
-                @if(isFavorito(anuncio)){
-                  <button class="favoritoTrue" (click)="fav(anuncio)" mat-fab extended>
+    @if (paginatedAnuncios.length > 0) {
+      <div class="contenedorCards">
+        <div class="titulo">
+          @if (this.misFavoritosPage) {
+            <h1>Favoritos</h1>
+          } @else if (this.misAnunciosPage) {
+            <h1>Publicaciones</h1>
+          }
+        </div>
+        @for (anuncio of paginatedAnuncios; track anuncio) {
+          <mat-card class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title-group>
+                <mat-card-title
+                  style="cursor: pointer"
+                  (click)="navigateTo(anuncio)"
+                  >{{ anuncio.propertyType }} en
+                  {{ anuncio.address }}</mat-card-title
+                >
+                <mat-card-subtitle>
+                  @if (
+                    anuncio.propertyType === propertyType.casa ||
+                    anuncio.propertyType === propertyType.piso
+                  ) {
+                    <h3>
+                      {{ anuncio.numRooms }}&nbsp;<mat-icon class="bed"
+                        >bed</mat-icon
+                      >&nbsp;&nbsp; {{ anuncio.squareMeters }} m² &nbsp;&nbsp;{{
+                        anuncio.numBathrooms
+                      }}&nbsp;<mat-icon class="bathtub">bathtub</mat-icon>
+                    </h3>
+                  }
+                </mat-card-subtitle>
+              </mat-card-title-group>
+              <div class="description">
+                <h4>{{ anuncio.description }}</h4>
+              </div>
+              <div class="bottom">
+                @if (this.usuario != null) {
+                  @if (isFavorito(anuncio)) {
+                    <button
+                      class="favoritoTrue"
+                      (click)="fav(anuncio)"
+                      mat-fab
+                      extended
+                    >
+                      <mat-icon>favorite</mat-icon>
+                      Favorite
+                    </button>
+                  } @else {
+                    <button (click)="fav(anuncio)" mat-fab extended>
+                      <mat-icon>favorite</mat-icon>
+                      Favorite
+                    </button>
+                  }
+                } @else {
+                  <button disabled mat-fab extended>
                     <mat-icon>favorite</mat-icon>
                     Favorite
-                  </button>  
-                }@else{
-                <button (click)="fav(anuncio)" mat-fab extended>
-                  <mat-icon>favorite</mat-icon>
-                  Favorite
-                </button>
-              }
-              }@else {
-                <button disabled mat-fab extended>
-                  <mat-icon>favorite</mat-icon>
-                  Favorite
-                </button>
-              }
-                
-              
-              <button mat-fab extended (click)="openContactSeller(anuncio)">
-                <mat-icon>call</mat-icon>
-                Contactar
-              </button> 
-              <div class="price">
-                <h2>{{anuncio?.price ?? 0 | customCurrency:'€'}}</h2>                       
+                  </button>
+                }
 
-              </div>
-            </div>
-          </mat-card-header>
-          <mat-card-content>
-              <div class="image-container">
-                  @if(anuncio.photo && anuncio.photo.length > 0 && anuncio.currentImageIndex !== undefined){
-                          <mat-icon class="leftArrow" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
-                        
-                          <img mat-card-lg-image style="cursor:pointer" (click)="navigateTo(anuncio)" [src]="'data:image/jpeg;base64,' + anuncio.photo[anuncio.currentImageIndex].photo" alt="Imagen de {{ anuncio.propertyType }}">
-
-                          <mat-icon class="rightArrow" [class.disabled]="anuncio.currentImageIndex==anuncio.photo.length-1"(click)="nextImage(anuncio)">chevron_right</mat-icon>
-                  }@else {
-                      <mat-icon class="leftArrow" style="visibility: hidden;" [class.disabled]="anuncio.currentImageIndex==0" (click)="prevImage(anuncio)">chevron_left</mat-icon>
-                      <img mat-card-lg-image style="cursor:pointer" (click)="navigateTo(anuncio)" src="assets/images/default.jpg" alt="Imagen por defecto">
-                      <mat-icon class="rightArrow" style="visibility: hidden;" [class.disabled]  (click)="nextImage(anuncio)">chevron_right</mat-icon>
-                  }
-                  
+                <button mat-fab extended (click)="openContactSeller(anuncio)">
+                  <mat-icon>call</mat-icon>
+                  Contactar
+                </button>
+                <div class="price">
+                  <h2>{{ anuncio?.price ?? 0 | customCurrency: "€" }}</h2>
                 </div>
-                
-          </mat-card-content>
-      </mat-card>
-   
-  }
-    
-  </div>
-  <div class="paginator">
-    <mat-paginator #paginator
-    class="demo-paginator"
-    (page)="handlePageEvent($event)"
-    [length]="length"
-    [pageSize]="pageSize"
-    [disabled]="disabled"
-    [showFirstLastButtons]="showFirstLastButtons"
-    [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
-    [hidePageSize]="hidePageSize"
-    [pageIndex]="pageIndex"
-    aria-label="Select page">
-    </mat-paginator>
-  </div>
- 
-    
-      
-      }@else {
-        <div class="contenedorCards">
-          <div class="contNoEncontrado">
-            @if(dataLoaded){
-              <img class="imgNoEncontrada" src="assets/images/pagina-no-encontrada.png">
-              <h3 style="color:rgb(32, 115, 224);">No hay resultados...</h3>
-  
-            }
-          </div>
-          
+              </div>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="image-container">
+                @if (
+                  anuncio.photo &&
+                  anuncio.photo.length > 0 &&
+                  anuncio.currentImageIndex !== undefined
+                ) {
+                  <mat-icon
+                    class="leftArrow"
+                    [class.disabled]="anuncio.currentImageIndex == 0"
+                    (click)="prevImage(anuncio)"
+                    >chevron_left</mat-icon
+                  >
 
+                  <img
+                    mat-card-lg-image
+                    style="cursor: pointer"
+                    (click)="navigateTo(anuncio)"
+                    [src]="
+                      'data:image/jpeg;base64,' +
+                      anuncio.photo[anuncio.currentImageIndex].photo
+                    "
+                    alt="Imagen de {{ anuncio.propertyType }}"
+                  />
+
+                  <mat-icon
+                    class="rightArrow"
+                    [class.disabled]="
+                      anuncio.currentImageIndex == anuncio.photo.length - 1
+                    "
+                    (click)="nextImage(anuncio)"
+                    >chevron_right</mat-icon
+                  >
+                } @else {
+                  <mat-icon
+                    class="leftArrow"
+                    style="visibility: hidden"
+                    [class.disabled]="anuncio.currentImageIndex == 0"
+                    (click)="prevImage(anuncio)"
+                    >chevron_left</mat-icon
+                  >
+                  <img
+                    mat-card-lg-image
+                    style="cursor: pointer"
+                    (click)="navigateTo(anuncio)"
+                    src="assets/images/default.jpg"
+                    alt="Imagen por defecto"
+                  />
+                  <mat-icon
+                    class="rightArrow"
+                    style="visibility: hidden"
+                    [class.disabled]
+                    (click)="nextImage(anuncio)"
+                    >chevron_right</mat-icon
+                  >
+                }
+              </div>
+            </mat-card-content>
+          </mat-card>
+        }
+      </div>
+      <div class="paginator">
+        <mat-paginator
+          #paginator
+          class="demo-paginator"
+          (page)="handlePageEvent($event)"
+          [length]="length"
+          [pageSize]="pageSize"
+          [disabled]="disabled"
+          [showFirstLastButtons]="showFirstLastButtons"
+          [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+          [hidePageSize]="hidePageSize"
+          [pageIndex]="pageIndex"
+          aria-label="Select page"
+        >
+        </mat-paginator>
+      </div>
+    } @else {
+      <div class="contenedorCards">
+        <div class="contNoEncontrado">
+          @if (dataLoaded) {
+            <img
+              class="imgNoEncontrada"
+              src="assets/images/pagina-no-encontrada.png"
+            />
+            <h3 style="color: rgb(32, 115, 224)">No hay resultados...</h3>
+          }
         </div>
-      }
-         
+      </div>
+    }
   </div>
-
 </div>
 
-@if(viewContactSeller == true && selectedAnuncio != null){
+@if (viewContactSeller == true && selectedAnuncio != null) {
   <div class="contact-seller-overlay" (click)="closeContactSeller()">
     <div class="contact-seller-container" (click)="$event.stopPropagation()">
       <mat-card class="contactSeller" appearance="outlined">
         <mat-card-content class="contactToSeller">
           <h2>Contacta con el vendedor</h2>
-          <h3>{{selectedAnuncio.seller?.nombre}}&nbsp;{{selectedAnuncio.seller?.apellidos}}</h3>
-                  <a [href]="'tel:+34'+selectedAnuncio.seller?.telefono"><h3><mat-icon>call</mat-icon>  {{selectedAnuncio.seller?.telefono}}</h3></a>
-                  <a [href]="'mailto:'+selectedAnuncio.seller?.email"><h3><mat-icon>mail</mat-icon>  {{selectedAnuncio.seller?.email}}</h3></a>
+          <h3>
+            {{ selectedAnuncio.seller?.nombre }}&nbsp;{{
+              selectedAnuncio.seller?.apellidos
+            }}
+          </h3>
+          <a [href]="'tel:+34' + selectedAnuncio.seller?.telefono"
+            ><h3>
+              <mat-icon>call</mat-icon> {{ selectedAnuncio.seller?.telefono }}
+            </h3></a
+          >
+          <a [href]="'mailto:' + selectedAnuncio.seller?.email"
+            ><h3>
+              <mat-icon>mail</mat-icon> {{ selectedAnuncio.seller?.email }}
+            </h3></a
+          >
         </mat-card-content>
-      </mat-card> 
+      </mat-card>
     </div>
   </div>
 }

@@ -1,9 +1,11 @@
-h1{
-  margin:2%;
+h1 {
+  margin: 2%;
   margin-bottom: 0%;
 }
 
-.img1, .img2, .img3{
+.img1,
+.img2,
+.img3 {
   width: 98.5vw;
   height: 70vh;
   margin-top: 0%;
@@ -12,128 +14,123 @@ h1{
   margin-bottom: 5%;
 }
 
-.img1 img, .img2 img, .img3 img{
+.img1 img,
+.img2 img,
+.img3 img {
   width: 100%;
-  height: auto; 
+  height: auto;
   position: absolute;
   bottom: 0;
   z-index: -1;
 }
 
-.principal{
+.principal {
   min-height: 76vh;
   height: auto;
   width: 100%;
 }
-mat-card-content{
+mat-card-content {
   width: 100%;
-  justify-items:  center;
+  justify-items: center;
 }
 
-.loginDiv{
+.loginDiv {
   display: flex;
   flex-direction: flex-start;
-  gap:10%;
+  gap: 10%;
   margin-left: 20%;
 }
 
-.barraBusqueda{
+.barraBusqueda {
   width: 100%;
   display: flex;
   align-items: center;
 }
 
 .lupa {
-  color: black; 
-  border: 1px solid #ccc; 
+  color: black;
+  border: 1px solid #ccc;
   margin-left: 5%;
 }
 
-.input{
+.input {
   width: 50%;
   margin-top: 5%;
   margin-left: 10%;
 }
 
-mat-button-toggle-group{
+mat-button-toggle-group {
   margin-left: 26%;
   padding-top: 3%;
   padding-bottom: 3%;
 }
 
-
-
-
-.card{
+.card {
   width: 40%;
   height: 60%;
   position: absolute;
   left: 5%;
-  top:35%;
+  top: 35%;
   opacity: 0.9;
   display: flex;
   align-items: center;
 }
 
-.transactionType{
+.transactionType {
   width: 90%;
   display: flex;
-  align-items: center; 
+  align-items: center;
   gap: 2%;
   margin-top: 2%;
 }
 
-.transactionType button{
+.transactionType button {
   font-size: large;
-  
 }
 
 .transactionType button:hover {
-  text-decoration: underline; 
+  text-decoration: underline;
 }
 
-.busquedaPersonalizada button{
+.busquedaPersonalizada button {
   font-size: large;
   margin-left: 8%;
-
 }
 
-.busquedaPersonalizada{
+.busquedaPersonalizada {
   width: 100%;
 }
 
-
-.publicarAnuncio button{
+.publicarAnuncio button {
   font-size: large;
 }
 
-.inicioSesion button{
+.inicioSesion button {
   font-size: large;
 }
 
-.registro button{
+.registro button {
   font-size: large;
 }
 
-
-.card2{
+.card2 {
   width: 40%;
   height: 60%;
   position: absolute;
   right: 10%;
-  top:35%;
+  top: 35%;
   opacity: 0.9;
   display: flex;
   align-items: center;
 }
 
-h2{
+h2 {
   margin-left: 11%;
   margin-top: 5%;
   font-size: xx-large;
 }
 
-.bienvenido{
+.bienvenido {
   font-size: x-large;
   margin-bottom: 1%;
 }

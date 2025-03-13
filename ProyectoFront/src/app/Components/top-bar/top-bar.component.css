@@ -1,27 +1,26 @@
-.inicioSesionButton{
-    position: absolute;
-    right: 75px;
+.inicioSesionButton {
+  position: absolute;
+  right: 75px;
 }
 
-.material-symbols-outlined{
-    position: absolute;
-    right: 45px;
+.material-symbols-outlined {
+  position: absolute;
+  right: 45px;
 }
 
-img{
-    margin-left: 1%;
-    width: 3%;
+img {
+  margin-left: 1%;
+  width: 3%;
 }
 
-.logo{
-    font-style: italic  ;
-    font-size: xx-large;
-    margin-left: 0.5%;
-    cursor: pointer;
-    margin-top: 0.75%;
+.logo {
+  font-style: italic;
+  font-size: xx-large;
+  margin-left: 0.5%;
+  cursor: pointer;
+  margin-top: 0.75%;
 }
 
-.material-symbols-outlined{
-    cursor: pointer;
+.material-symbols-outlined {
+  cursor: pointer;
 }
-
