@@ -246,6 +246,7 @@ export class PublicarAnuncioComponent implements AfterViewInit {
 
       formData.append('anuncio', JSON.stringify(anuncio));
       console.log(JSON.stringify(anuncio));
+      console.log(anuncio);
 
       for (let imgArray of this.imgArray) {
         if (imgArray) {
@@ -257,6 +258,7 @@ export class PublicarAnuncioComponent implements AfterViewInit {
 
       this.anuncioService.addAnuncioService(formData).subscribe((response) => {
         this.router.navigate(['/anuncios']);
+        console.log(anuncio);
       });
     });
   }

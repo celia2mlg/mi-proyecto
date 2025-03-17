@@ -1,7 +1,5 @@
 package com.example.ProyectoBack.security;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -17,6 +15,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import static org.springframework.security.config.Customizer.withDefaults;
+
+import java.util.List;
 
 
 @Configuration
@@ -39,7 +40,7 @@ public class WebSecurityConfig {
 	    jwtAuthenticationFilter.setFilterProcessesUrl("/login/url");
 	    
 	    http
-	   
+	    	
 	        .authorizeHttpRequests(request ->
 	            request.requestMatchers("/anuncio/publicarAnuncio")
 	                .authenticated()
@@ -54,6 +55,7 @@ public class WebSecurityConfig {
 	                .requestMatchers("/anuncio/{anuncioId}/favorito/{usuarioEmail}")
 	                .permitAll()
 	        )
+	        // .cors(withDefaults())
 	        .cors(cors -> {
 	            CorsConfiguration config = new CorsConfiguration();
 	            config.addAllowedOrigin("http://localhost:4200");
@@ -76,6 +78,8 @@ public class WebSecurityConfig {
 	    return http.build();
 	}
 
+	
+	
 	
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {

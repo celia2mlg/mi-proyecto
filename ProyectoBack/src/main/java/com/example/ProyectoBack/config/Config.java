@@ -1,4 +1,4 @@
-/*package com.example.ProyectoBack.config;
+package com.example.ProyectoBack.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,8 @@ public class Config implements WebMvcConfigurer{
 				                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") 
 				                .allowedHeaders("*")
 				                .exposedHeaders("*") 
-				                .allowCredentials(true);  
+				                .allowCredentials(true);
+				        		
 				}
 
 			};
@@ -29,4 +30,3 @@ public class Config implements WebMvcConfigurer{
 		
 	}
 
-*/

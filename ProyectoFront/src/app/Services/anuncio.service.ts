@@ -55,7 +55,7 @@ export class AnuncioService {
     });
   }
 
-  //Get tidis los anuncios
+  //Get todos los anuncios
   getAnuncioService(id: number) {
     return this.http.get<Anuncio>(
       this.rutaGlobal + 'anuncio/getAnuncio/' + id,
