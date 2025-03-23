@@ -16,6 +16,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { MatIconModule } from '@angular/material/icon';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,13 @@ export class AppComponent implements OnInit {
     private ngxLoader: NgxUiLoaderService,
     private router: Router,
     private loginService: LoginService,
-  ) {}
+  ) {
+    this.router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe(() => {
+        window.scrollTo(0, 0);
+      });
+  }
 
   ngOnInit(): void {
     this.ngxLoader.start();
@@ -104,12 +111,6 @@ export class AppComponent implements OnInit {
         this.ngxLoader.stop();
       }
     });
-
-    // this.loginService.getUser().subscribe(
-    //   (response)=>{
-    //     this.usuario= response as Usuario;
-    //   }
-    // );
   }
   @ViewChild('drawer') drawer!: MatDrawer;
 

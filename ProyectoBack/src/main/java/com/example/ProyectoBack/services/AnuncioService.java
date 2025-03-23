@@ -22,9 +22,11 @@ public class AnuncioService {
 	private UsuarioService usuarioService;
 	
 	public Anuncio addAnuncio(Anuncio anuncio) {
-		System.out.println("en el servicio");
-		System.out.println(anuncio.getSeller());
 		return this.anuncioRepository.save(anuncio);
+	}
+	
+	public void deleteAnuncioService(int id) {
+		this.anuncioRepository.deleteById(id);
 	}
 	
 	public List<Anuncio> getAnuncios() {

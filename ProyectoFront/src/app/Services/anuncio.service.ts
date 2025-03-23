@@ -213,4 +213,11 @@ export class AnuncioService {
       console.log('fav actualizado');
     });
   }
+
+  //Eliminar anuncio
+  deleteService(id: number) {
+    return this.http.delete<any>(this.rutaGlobal + 'anuncio/delete/' + id, {
+      observe: 'response',
+    });
+  }
 }

@@ -17,129 +17,133 @@
             <div class="contenedorCards">
               @for (anuncio of paginatedAnuncios; track anuncio) {
                 <mat-card class="example-card" appearance="outlined">
-                  <mat-card-header>
-                    <mat-card-title-group>
-                      <mat-card-title
-                        style="cursor: pointer"
-                        (click)="navigateTo(anuncio)"
-                        >{{ anuncio.propertyType }} en
-                        {{ anuncio.address }}</mat-card-title
-                      >
-                      <mat-card-subtitle>
-                        <h3>
-                          {{ anuncio.numRooms }}&nbsp;<mat-icon class="bed"
-                            >bed</mat-icon
-                          >&nbsp;&nbsp; {{ anuncio.squareMeters }} m²
-                          &nbsp;&nbsp;{{ anuncio.numBathrooms }}&nbsp;<mat-icon
-                            class="bathtub"
-                            >bathtub</mat-icon
+                  <div class="row">
+                    <mat-card-header>
+                      <mat-card-title-group>
+                        <mat-card-title
+                          style="cursor: pointer"
+                          (click)="navigateTo(anuncio)"
+                          >{{ anuncio.propertyType }} en
+                          {{ anuncio.address }}</mat-card-title
+                        >
+                        <mat-card-subtitle>
+                          @if (
+                            anuncio.propertyType === propertyType.casa ||
+                            anuncio.propertyType === propertyType.piso
+                          ) {
+                            <h3>
+                              {{ anuncio.numRooms }}&nbsp;<mat-icon class="bed"
+                                >bed</mat-icon
+                              >&nbsp;&nbsp; {{ anuncio.squareMeters }} m²
+                              &nbsp;&nbsp;{{
+                                anuncio.numBathrooms
+                              }}&nbsp;<mat-icon class="bathtub"
+                                >bathtub</mat-icon
+                              >
+                            </h3>
+                          }
+                        </mat-card-subtitle>
+                      </mat-card-title-group>
+                      <div class="description">
+                        <h4>
+                          {{ anuncio.description }}
+                        </h4>
+                      </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="image-container">
+                        @if (
+                          anuncio.photo &&
+                          anuncio.photo.length > 0 &&
+                          anuncio.currentImageIndex !== undefined
+                        ) {
+                          <mat-icon
+                            class="leftArrow"
+                            [class.disabled]="anuncio.currentImageIndex == 0"
+                            (click)="prevImage(anuncio)"
+                            >chevron_left</mat-icon
                           >
-                        </h3>
-                      </mat-card-subtitle>
-                    </mat-card-title-group>
-                    <div class="description">
-                      <h4>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Iure accusamus autem sunt dignissimos saepe
-                        consectetur ducimus et fugit numquam, eveniet non
-                        asperiores ratione deleniti soluta quam tempora rerum!
-                        Atque, placeat!
-                      </h4>
-                    </div>
-                    <div class="bottom">
-                      @if (this.usuario != null) {
-                        @if (isFavorito(anuncio)) {
-                          <button
-                            class="favoritoTrue"
-                            (click)="fav(anuncio)"
-                            mat-fab
-                            extended
+
+                          <img
+                            mat-card-lg-image
+                            style="cursor: pointer"
+                            (click)="navigateTo(anuncio)"
+                            [src]="
+                              'data:image/jpeg;base64,' +
+                              anuncio.photo[anuncio.currentImageIndex].photo
+                            "
+                            alt="Imagen de {{ anuncio.propertyType }}"
+                          />
+
+                          <mat-icon
+                            class="rightArrow"
+                            [class.disabled]="
+                              anuncio.currentImageIndex ==
+                              anuncio.photo.length - 1
+                            "
+                            (click)="nextImage(anuncio)"
+                            >chevron_right</mat-icon
                           >
-                            <mat-icon>favorite</mat-icon>
-                            Favorite
-                          </button>
                         } @else {
-                          <button (click)="fav(anuncio)" mat-fab extended>
-                            <mat-icon>favorite</mat-icon>
-                            Favorite
-                          </button>
+                          <mat-icon
+                            class="leftArrow"
+                            style="visibility: hidden"
+                            [class.disabled]="anuncio.currentImageIndex == 0"
+                            (click)="prevImage(anuncio)"
+                            >chevron_left</mat-icon
+                          >
+                          <img
+                            mat-card-lg-image
+                            style="cursor: pointer"
+                            (click)="navigateTo(anuncio)"
+                            src="assets/images/default.jpg"
+                            alt="Imagen por defecto"
+                          />
+                          <mat-icon
+                            class="rightArrow"
+                            style="visibility: hidden"
+                            [class.disabled]
+                            (click)="nextImage(anuncio)"
+                            >chevron_right</mat-icon
+                          >
                         }
+                      </div>
+                    </mat-card-content>
+                  </div>
+                  <div class="bottom">
+                    @if (this.usuario != null) {
+                      @if (isFavorito(anuncio)) {
+                        <button
+                          class="favoritoTrue"
+                          (click)="fav(anuncio)"
+                          mat-fab
+                          extended
+                        >
+                          <mat-icon>favorite</mat-icon>
+                          Favorite
+                        </button>
                       } @else {
-                        <button disabled mat-fab extended>
+                        <button (click)="fav(anuncio)" mat-fab extended>
                           <mat-icon>favorite</mat-icon>
                           Favorite
                         </button>
                       }
-
-                      <button
-                        mat-fab
-                        extended
-                        (click)="openContactSeller(anuncio)"
-                      >
-                        <mat-icon>call</mat-icon>
-                        Contactar
+                    } @else {
+                      <button disabled mat-fab extended>
+                        <mat-icon>favorite</mat-icon>
+                        Favorite
                       </button>
-                    </div>
-                  </mat-card-header>
-                  <mat-card-content>
-                    <div class="image-container">
-                      @if (
-                        anuncio.photo &&
-                        anuncio.photo.length > 0 &&
-                        anuncio.currentImageIndex !== undefined
-                      ) {
-                        <mat-icon
-                          class="leftArrow"
-                          [class.disabled]="anuncio.currentImageIndex == 0"
-                          (click)="prevImage(anuncio)"
-                          >chevron_left</mat-icon
-                        >
+                    }
 
-                        <img
-                          mat-card-lg-image
-                          style="cursor: pointer"
-                          (click)="navigateTo(anuncio)"
-                          [src]="
-                            'data:image/jpeg;base64,' +
-                            anuncio.photo[anuncio.currentImageIndex].photo
-                          "
-                          alt="Imagen de {{ anuncio.propertyType }}"
-                        />
-
-                        <mat-icon
-                          class="rightArrow"
-                          [class.disabled]="
-                            anuncio.currentImageIndex ==
-                            anuncio.photo.length - 1
-                          "
-                          (click)="nextImage(anuncio)"
-                          >chevron_right</mat-icon
-                        >
-                      } @else {
-                        <mat-icon
-                          class="leftArrow"
-                          style="visibility: hidden"
-                          [class.disabled]="anuncio.currentImageIndex == 0"
-                          (click)="prevImage(anuncio)"
-                          >chevron_left</mat-icon
-                        >
-                        <img
-                          mat-card-lg-image
-                          style="cursor: pointer"
-                          (click)="navigateTo(anuncio)"
-                          src="assets/images/default.jpg"
-                          alt="Imagen por defecto"
-                        />
-                        <mat-icon
-                          class="rightArrow"
-                          style="visibility: hidden"
-                          [class.disabled]
-                          (click)="nextImage(anuncio)"
-                          >chevron_right</mat-icon
-                        >
-                      }
-                    </div>
-                  </mat-card-content>
+                    <button
+                      mat-fab
+                      extended
+                      (click)="openContactSeller(anuncio)"
+                    >
+                      <mat-icon>call</mat-icon>
+                      Contactar
+                    </button>
+                  </div>
                 </mat-card>
               }
             </div>
@@ -211,129 +215,141 @@
             <div class="contenedorCards">
               @for (anuncio of paginatedAnuncios; track anuncio) {
                 <mat-card class="example-card" appearance="outlined">
-                  <mat-card-header>
-                    <mat-card-title-group>
-                      <mat-card-title
-                        style="cursor: pointer"
-                        (click)="navigateTo(anuncio)"
-                        >{{ anuncio.propertyType }} en
-                        {{ anuncio.address }}</mat-card-title
-                      >
-                      <mat-card-subtitle>
-                        <h3>
-                          {{ anuncio.numRooms }}&nbsp;<mat-icon class="bed"
-                            >bed</mat-icon
-                          >&nbsp;&nbsp; {{ anuncio.squareMeters }} m²
-                          &nbsp;&nbsp;{{ anuncio.numBathrooms }}&nbsp;<mat-icon
-                            class="bathtub"
-                            >bathtub</mat-icon
+                  <div class="row">
+                    <mat-card-header>
+                      <mat-card-title-group>
+                        <mat-card-title
+                          style="cursor: pointer"
+                          (click)="navigateTo(anuncio)"
+                          >{{ anuncio.propertyType }} en
+                          {{ anuncio.address }}</mat-card-title
+                        >
+                        <mat-card-subtitle>
+                          @if (
+                            anuncio.propertyType === propertyType.casa ||
+                            anuncio.propertyType === propertyType.piso
+                          ) {
+                            <h3>
+                              {{ anuncio.numRooms }}&nbsp;<mat-icon class="bed"
+                                >bed</mat-icon
+                              >&nbsp;&nbsp; {{ anuncio.squareMeters }} m²
+                              &nbsp;&nbsp;{{
+                                anuncio.numBathrooms
+                              }}&nbsp;<mat-icon class="bathtub"
+                                >bathtub</mat-icon
+                              >
+                            </h3>
+                          }
+                        </mat-card-subtitle>
+                      </mat-card-title-group>
+                      <div class="description">
+                        <h4>
+                          {{ anuncio.description }}
+                        </h4>
+                      </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                      <div class="image-container">
+                        @if (
+                          anuncio.photo &&
+                          anuncio.photo.length > 0 &&
+                          anuncio.currentImageIndex !== undefined
+                        ) {
+                          <mat-icon
+                            class="leftArrow"
+                            [class.disabled]="anuncio.currentImageIndex == 0"
+                            (click)="prevImage(anuncio)"
+                            >chevron_left</mat-icon
                           >
-                        </h3>
-                      </mat-card-subtitle>
-                    </mat-card-title-group>
-                    <div class="description">
-                      <h4>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Iure accusamus autem sunt dignissimos saepe
-                        consectetur ducimus et fugit numquam, eveniet non
-                        asperiores ratione deleniti soluta quam tempora rerum!
-                        Atque, placeat!
-                      </h4>
-                    </div>
-                    <div class="bottom">
-                      @if (this.usuario != null) {
-                        @if (isFavorito(anuncio)) {
-                          <button
-                            class="favoritoTrue"
-                            (click)="fav(anuncio)"
-                            mat-fab
-                            extended
+
+                          <img
+                            mat-card-lg-image
+                            style="cursor: pointer"
+                            (click)="navigateTo(anuncio)"
+                            [src]="
+                              'data:image/jpeg;base64,' +
+                              anuncio.photo[anuncio.currentImageIndex].photo
+                            "
+                            alt="Imagen de {{ anuncio.propertyType }}"
+                          />
+
+                          <mat-icon
+                            class="rightArrow"
+                            [class.disabled]="
+                              anuncio.currentImageIndex ==
+                              anuncio.photo.length - 1
+                            "
+                            (click)="nextImage(anuncio)"
+                            >chevron_right</mat-icon
                           >
-                            <mat-icon>favorite</mat-icon>
-                            Favorite
-                          </button>
                         } @else {
-                          <button (click)="fav(anuncio)" mat-fab extended>
-                            <mat-icon>favorite</mat-icon>
-                            Favorite
-                          </button>
+                          <mat-icon
+                            class="leftArrow"
+                            style="visibility: hidden"
+                            [class.disabled]="anuncio.currentImageIndex == 0"
+                            (click)="prevImage(anuncio)"
+                            >chevron_left</mat-icon
+                          >
+                          <img
+                            mat-card-lg-image
+                            style="cursor: pointer"
+                            (click)="navigateTo(anuncio)"
+                            src="assets/images/default.jpg"
+                            alt="Imagen por defecto"
+                          />
+                          <mat-icon
+                            class="rightArrow"
+                            style="visibility: hidden"
+                            [class.disabled]
+                            (click)="nextImage(anuncio)"
+                            >chevron_right</mat-icon
+                          >
                         }
+                      </div>
+                    </mat-card-content>
+                  </div>
+                  <div class="bottom">
+                    @if (this.usuario != null) {
+                      @if (isFavorito(anuncio)) {
+                        <button
+                          class="favoritoTrue"
+                          (click)="fav(anuncio)"
+                          mat-fab
+                          extended
+                        >
+                          <mat-icon>favorite</mat-icon>
+                          Favorite
+                        </button>
                       } @else {
-                        <button disabled mat-fab extended>
+                        <button (click)="fav(anuncio)" mat-fab extended>
                           <mat-icon>favorite</mat-icon>
                           Favorite
                         </button>
                       }
-
-                      <button
-                        mat-fab
-                        extended
-                        (click)="openContactSeller(anuncio)"
-                      >
-                        <mat-icon>call</mat-icon>
-                        Contactar
+                    } @else {
+                      <button disabled mat-fab extended>
+                        <mat-icon>favorite</mat-icon>
+                        Favorite
                       </button>
-                    </div>
-                  </mat-card-header>
-                  <mat-card-content>
-                    <div class="image-container">
-                      @if (
-                        anuncio.photo &&
-                        anuncio.photo.length > 0 &&
-                        anuncio.currentImageIndex !== undefined
-                      ) {
-                        <mat-icon
-                          class="leftArrow"
-                          [class.disabled]="anuncio.currentImageIndex == 0"
-                          (click)="prevImage(anuncio)"
-                          >chevron_left</mat-icon
-                        >
+                    }
 
-                        <img
-                          mat-card-lg-image
-                          style="cursor: pointer"
-                          (click)="navigateTo(anuncio)"
-                          [src]="
-                            'data:image/jpeg;base64,' +
-                            anuncio.photo[anuncio.currentImageIndex].photo
-                          "
-                          alt="Imagen de {{ anuncio.propertyType }}"
-                        />
-
-                        <mat-icon
-                          class="rightArrow"
-                          [class.disabled]="
-                            anuncio.currentImageIndex ==
-                            anuncio.photo.length - 1
-                          "
-                          (click)="nextImage(anuncio)"
-                          >chevron_right</mat-icon
-                        >
-                      } @else {
-                        <mat-icon
-                          class="leftArrow"
-                          style="visibility: hidden"
-                          [class.disabled]="anuncio.currentImageIndex == 0"
-                          (click)="prevImage(anuncio)"
-                          >chevron_left</mat-icon
-                        >
-                        <img
-                          mat-card-lg-image
-                          style="cursor: pointer"
-                          (click)="navigateTo(anuncio)"
-                          src="assets/images/default.jpg"
-                          alt="Imagen por defecto"
-                        />
-                        <mat-icon
-                          class="rightArrow"
-                          style="visibility: hidden"
-                          [class.disabled]
-                          (click)="nextImage(anuncio)"
-                          >chevron_right</mat-icon
-                        >
-                      }
-                    </div>
-                  </mat-card-content>
+                    <button
+                      mat-fab
+                      extended
+                      (click)="openContactSeller(anuncio)"
+                    >
+                      <mat-icon>call</mat-icon>
+                      Contactar
+                    </button>
+                    <button
+                      class="delete"
+                      mat-fab
+                      extended
+                      (click)="delete(anuncio.id!)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
                 </mat-card>
               }
             </div>

@@ -13,7 +13,8 @@
   gap: 16px;
 }
 .example-card {
-  flex-direction: row;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding-bottom: 2%;
   padding-right: 1%;
@@ -79,13 +80,28 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10%;
   align-self: flex-end;
+  background-color: rgb(12, 255, 255);
+  margin-top: 15%;
   position: relative;
-  width: 100%;
-  height: 100%;
+}
+.row {
+  display: flex;
+  flex-direction: row;
 }
 
+.bottom {
+  padding-left: 2.5%;
+  padding-bottom: 2%;
+}
+
+.delete {
+  justify-content: center;
+  width: 8%;
+  padding: 0;
+  padding-left: 3%;
+  left: 28%;
+}
 .rightArrow {
   position: absolute;
   transform: translateY(-50%);
@@ -128,6 +144,11 @@ h3 {
   width: 30%;
 }
 mat-card-header {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-content {
   display: flex;
   flex-direction: column;
 }

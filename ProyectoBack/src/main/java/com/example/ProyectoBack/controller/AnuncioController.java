@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -84,6 +85,12 @@ public class AnuncioController {
 	@PostMapping("{anuncioId}/favorito/{usuarioEmail}")
 	public Anuncio favourite(@PathVariable int anuncioId,@PathVariable String usuarioEmail){
 	       return anuncioService.updateFavourites(anuncioId, usuarioEmail); 
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public void deleteAnuncio(@PathVariable int id){
+		
+		this.anuncioService.deleteAnuncioService(id);
 	}
 	
 

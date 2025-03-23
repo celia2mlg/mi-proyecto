@@ -10,6 +10,7 @@ import { PaginationHelper } from '../../Helpers/pagination-helper';
 import { Router } from '@angular/router';
 import { MatTabChangeEvent, MatTabsModule } from '@angular/material/tabs';
 import { MatButtonModule } from '@angular/material/button';
+import { PropertyType } from '../../Enum/property-type';
 
 @Component({
   selector: 'app-mi-perfil',
@@ -39,6 +40,7 @@ export class MiPerfilComponent implements OnInit {
   showFirstLastButtons = true;
   disabled = false;
   misFavoritos: boolean = true;
+  propertyType = PropertyType;
 
   constructor(
     private router: Router,
@@ -185,6 +187,24 @@ export class MiPerfilComponent implements OnInit {
   closeContactSeller() {
     this.viewContactSeller = false;
     this.selectedAnuncio = null;
+  }
+
+  //Eliminar anuncio
+  delete(id: number) {
+    this.anuncioService.deleteService(id).subscribe((response) => {
+      if (response) {
+        this.anuncios = this.anuncios.filter((anuncio) => anuncio.id !== id);
+        this.anunciosFiltrados = this.anuncios;
+        this.length = this.anuncios.length;
+        this.paginatedAnuncios = PaginationHelper.getPaginatedData(
+          this.anunciosFiltrados,
+          this.pageIndex,
+          this.pageSize,
+        );
+
+        this.cdr.markForCheck();
+      }
+    });
   }
 
   //Pasar de fotos
