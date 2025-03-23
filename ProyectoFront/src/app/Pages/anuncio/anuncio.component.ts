@@ -40,6 +40,7 @@ export class AnuncioComponent implements OnInit {
   usuario: Usuario = {};
   isFavorite?: boolean;
   viewContactSeller: boolean = false;
+  message = 'Mira esta publicación en Ohana Home: ';
 
   constructor(
     private loginService: LoginService,
@@ -165,5 +166,14 @@ export class AnuncioComponent implements OnInit {
     if (this.viewContactSeller && !this.anuncio?.seller) {
       this.viewContactSeller = false;
     }
+  }
+
+  //Compartir por whatsapp
+  share(anuncio: Anuncio) {
+    const url =
+      this.message + '%0A' + 'http://localhost:4200/anuncio/' + anuncio.id;
+    const whatsappMsg = `https://api.whatsapp.com/send?text=${url}`;
+
+    window.open(whatsappMsg, '_blank');
   }
 }

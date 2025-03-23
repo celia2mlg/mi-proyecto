@@ -25,6 +25,7 @@ mat-drawer {
 }
 router-outlet {
   flex-grow: 1;
+  display: flex;
 }
 
 app-footer {
