@@ -15,12 +15,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LoginService } from '../../Services/login.service';
 import { Usuario } from '../../Modelos/usuario';
 import { Credentials } from '../../Modelos/usuario';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-inicio-sesion',
   imports: [
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
@@ -34,6 +36,7 @@ export class InicioSesionComponent implements OnInit {
   usuarios: Array<Usuario>;
   errorMsg?: string;
   returnUlr?: string;
+  showPassword: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -57,6 +60,11 @@ export class InicioSesionComponent implements OnInit {
     email: '',
     password: '',
   };
+
+  //Visualizar contraseña
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
 
   //Iniciar sesion
   login() {

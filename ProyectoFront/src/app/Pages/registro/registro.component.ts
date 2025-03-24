@@ -17,6 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario, Credentials } from '../../Modelos/usuario';
 import { RegistroService } from '../../Services/registro.service';
 import { LoginService } from '../../Services/login.service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-registro',
@@ -25,6 +26,7 @@ import { LoginService } from '../../Services/login.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
     ReactiveFormsModule,
   ],
   templateUrl: './registro.component.html',
@@ -61,8 +63,19 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-
+  showPassword: boolean = false;
+  showConfirmPassword: boolean = false;
   isValidPass: Boolean = false;
+
+  //Visualizar contraseña
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
+
+  //Visualizar contraseña
+  toggleConfirmPasswordVisibility(): void {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 
   //Boton de navegar a inicio Sesion
   navigateToLogin() {

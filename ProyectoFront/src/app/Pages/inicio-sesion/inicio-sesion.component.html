@@ -11,12 +11,28 @@
         <div class="example-container">
           <mat-form-field>
             <mat-label>Contraseña</mat-label>
-            <input
-              type="password"
-              matInput
-              formControlName="password"
-              required
-            />
+            @if (!showPassword) {
+              <input
+                type="password"
+                matInput
+                formControlName="password"
+                required
+              />
+            } @else {
+              <input matInput type="text" formControlName="password" required />
+            }
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="togglePasswordVisibility()"
+              tabindex="-1"
+            >
+              @if (!showPassword) {
+                <mat-icon>visibility_off</mat-icon>
+              } @else {
+                <mat-icon>visibility</mat-icon>
+              }
+            </button>
           </mat-form-field>
         </div>
         <p (click)="navigateToRegister()">¿No tienes cuenta? Registrate</p>
