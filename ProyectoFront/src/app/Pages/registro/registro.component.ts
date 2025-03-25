@@ -103,23 +103,16 @@ export class RegistroComponent implements OnInit {
         } else {
           this.registroService
             .addUsuarioService(usuario)
-            .subscribe((response) => {
-              console.log(response);
-              console.log(response.body?.email);
-            });
+            .subscribe((response) => {});
 
           const credentials: Credentials = {
             email: usuario?.email,
             password: usuario?.password,
           };
 
-          console.log(credentials);
-
           this.loginService
             .login(credentials, this.returnUrl || '/')
-            .subscribe((loginResponse) => {
-              console.log('login completado');
-            });
+            .subscribe((loginResponse) => {});
         }
       });
     }

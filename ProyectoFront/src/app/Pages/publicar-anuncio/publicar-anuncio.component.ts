@@ -194,21 +194,11 @@ export class PublicarAnuncioComponent implements AfterViewInit {
   }
 
   selectAddress(suggestion: any) {
-    console.log('Dirección seleccionada:', suggestion.description);
     this.suggestions = [];
-    console.log(this.fourthFormGroup.get('address')?.value || undefined);
   }
 
   //Crear anuncio
   addPost() {
-    console.log('estamos en addpost');
-    // const userObservable = this.loginService.getUser();
-    // if(userObservable){
-    //   userObservable.subscribe(
-    //     (response) =>{
-    //       this.sellerData = response as Usuario;
-    //       console.log(this.sellerData)
-
     this.loginService.usuario$.subscribe((usuario) => {
       this.sellerData = usuario as Usuario;
 
@@ -245,8 +235,6 @@ export class PublicarAnuncioComponent implements AfterViewInit {
       let formData = new FormData();
 
       formData.append('anuncio', JSON.stringify(anuncio));
-      console.log(JSON.stringify(anuncio));
-      console.log(anuncio);
 
       for (let imgArray of this.imgArray) {
         if (imgArray) {
@@ -258,7 +246,6 @@ export class PublicarAnuncioComponent implements AfterViewInit {
 
       this.anuncioService.addAnuncioService(formData).subscribe((response) => {
         this.router.navigate(['/anuncios']);
-        console.log(anuncio);
       });
     });
   }

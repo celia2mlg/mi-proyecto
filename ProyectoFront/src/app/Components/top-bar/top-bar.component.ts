@@ -30,10 +30,6 @@ export class TopBarComponent implements OnInit {
   usuario: Usuario = {};
 
   ngOnInit(): void {
-    // this.loginService.getUser().subscribe(
-    //   (response)=>{
-    //   this.usuario = response as Usuario;
-    // });
     this.loginService.usuario$.subscribe((user) => {
       this.usuario = user as Usuario;
     });

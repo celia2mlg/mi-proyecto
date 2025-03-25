@@ -126,7 +126,6 @@ export class AppComponent implements OnInit {
   //Cerrar Sesion
   cerrarSesion() {
     const returnUrl = this.router.url;
-    console.log('Estamos en cerrar sesion');
     this.loginService.cerrarSesion(returnUrl);
     this.drawer.close();
   }

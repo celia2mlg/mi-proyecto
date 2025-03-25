@@ -28,12 +28,9 @@ export class ValidarUsuarioGuard implements CanActivate {
       take(1),
       map((usuario: Usuario | null) => {
         const idRuta = +route.paramMap.get('id')!;
-        console.log(idRuta);
-        console.log(usuario);
         if (usuario && usuario.id === idRuta) {
           return true;
         } else {
-          console.log('estamos en validar guarda');
           this.router.navigate(['/restricted-page']);
           return false;
         }

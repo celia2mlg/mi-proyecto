@@ -39,7 +39,6 @@ export class AnuncioService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    console.log('token del localstorage' + token);
 
     return this.http
       .post<Anuncio>(this.rutaGlobal + 'anuncio/publicarAnuncio', anuncio, {
@@ -121,7 +120,6 @@ export class AnuncioService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`,
     });
-    console.log(usuario);
     return this.http
       .post<Anuncio>(
         this.rutaGlobal +
@@ -209,9 +207,7 @@ export class AnuncioService {
       anuncio.favoritos.push(usuario);
     }
 
-    this.favBackService(anuncio, usuario).subscribe((response) => {
-      console.log('fav actualizado');
-    });
+    this.favBackService(anuncio, usuario).subscribe((response) => {});
   }
 
   //Eliminar anuncio

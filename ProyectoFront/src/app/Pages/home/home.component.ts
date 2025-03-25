@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../Services/login.service';
 import { Usuario } from '../../Modelos/usuario';
 import { AnuncioService } from '../../Services/anuncio.service';
-import { Anuncio } from '../../Modelos/anuncio';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -51,18 +50,6 @@ export class HomeComponent implements OnInit {
       this.usuarioRegistrado = usuario;
     });
   }
-
-  //Obtener usuario lo quitamos por usar BEHAVIOR SUBJECT
-  // obtenerUsuario(): void {
-  //   const userObservable = this.loginService.getUser();
-  //   if (userObservable) {
-
-  //     userObservable.subscribe(
-  //       response =>{
-  //         this.usuarioRegistrado = response;
-  //       })
-  //   }
-  // }
 
   //Filtrar anuncios
   filtrarAnuncios() {

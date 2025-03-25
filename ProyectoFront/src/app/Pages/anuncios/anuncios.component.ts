@@ -112,7 +112,6 @@ export class AnunciosComponent implements OnInit {
 
     this.loginService.usuario$.subscribe((response) => {
       this.usuario = response as Usuario;
-      console.log(this.misAnunciosPage);
 
       if (this.misFavoritosPage === true) {
         this.getFavoritos(this.usuario);
@@ -155,7 +154,6 @@ export class AnunciosComponent implements OnInit {
         );
         this.cdr.markForCheck();
       } else {
-        console.log('No hay anuncios');
       }
       this.dataLoaded = true;
     });
@@ -212,8 +210,6 @@ export class AnunciosComponent implements OnInit {
       this.anuncios,
       this.filtros,
     );
-    console.log(this.anunciosFiltrados);
-    console.log('estamos en filtrar()');
     this.length = this.anunciosFiltrados.length;
     this.pageIndex = 0;
     this.paginatedAnuncios = PaginationHelper.getPaginatedData(
@@ -247,7 +243,6 @@ export class AnunciosComponent implements OnInit {
   //Cargar anuncios favoritos del usuario
   getFavoritos(usuario: Usuario) {
     let id = this.usuario.id;
-    console.log(usuario);
     if (id) {
       this.anuncioService.getFavouritesService(id).subscribe((response) => {
         if (response && response.body) {
@@ -256,8 +251,6 @@ export class AnunciosComponent implements OnInit {
             currentImageIndex: 0,
           }));
 
-          console.log(this.anuncios);
-
           this.anunciosFiltrados = this.anuncios;
           this.length = this.anunciosFiltrados.length;
 
@@ -268,8 +261,6 @@ export class AnunciosComponent implements OnInit {
           );
 
           this.cdr.markForCheck();
-        } else {
-          console.log('No hay anuncios');
         }
       });
     }
@@ -278,7 +269,6 @@ export class AnunciosComponent implements OnInit {
   //Get mis anuncios
   getMisAnuncios(usuario: Usuario) {
     let id = this.usuario.id;
-    console.log(usuario);
     if (id) {
       this.anuncioService.getMisAnunciosService(id).subscribe((response) => {
         if (response && response.body) {
@@ -286,8 +276,6 @@ export class AnunciosComponent implements OnInit {
             ...anuncio,
             currentImageIndex: 0,
           }));
-
-          console.log(this.anuncios);
 
           this.anunciosFiltrados = this.anuncios;
           this.length = this.anunciosFiltrados.length;
@@ -299,18 +287,8 @@ export class AnunciosComponent implements OnInit {
           );
 
           this.cdr.markForCheck();
-        } else {
-          console.log('No hay anuncios');
         }
       });
     }
   }
-
-  //Paginator
-  // getPaginatedData(){
-  //   const startIndex = this.pageIndex * this.pageSize;
-  //   const endIndex = startIndex + this.pageSize;
-  //   this.paginatedAnuncios = this.anunciosFiltrados.slice(startIndex, endIndex);
-
-  // }
 }

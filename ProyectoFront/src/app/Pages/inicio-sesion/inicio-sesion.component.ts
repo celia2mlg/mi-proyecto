@@ -70,10 +70,6 @@ export class InicioSesionComponent implements OnInit {
   login() {
     this.creds.email = this.formulario.get('email')?.value;
     this.creds.password = this.formulario.get('password')?.value;
-
-    console.log('en el compoennte');
-    console.log(this.creds);
-
     this.loginService
       .login(this.creds, this.returnUlr || '/')
       .subscribe((response) => {

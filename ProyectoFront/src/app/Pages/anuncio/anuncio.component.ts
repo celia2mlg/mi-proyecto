@@ -64,17 +64,16 @@ export class AnuncioComponent implements OnInit {
           if (this.anuncio) {
             this.anuncio.currentImageIndex = 0;
           }
-          console.log(this.anuncio);
           this.loginService.usuario$.subscribe((response) => {
             this.usuario = response as Usuario;
             if (
+              this.usuario &&
               this.anuncio?.favoritos?.some((fav) => fav.id === this.usuario.id)
             ) {
               this.isFavorite = true;
             } else {
               this.isFavorite = false;
             }
-            console.log('en oninit', this.isFavorite);
           });
 
           //Caracteristicas
@@ -114,7 +113,6 @@ export class AnuncioComponent implements OnInit {
         anuncio.currentImageIndex < anuncio.photo.length - 1
       ) {
         anuncio.currentImageIndex++;
-        console.log(anuncio.currentImageIndex);
         this.cdRef.markForCheck();
       }
     }
@@ -143,12 +141,9 @@ export class AnuncioComponent implements OnInit {
 
     this.anuncioService
       .favBackService(this.anuncio!, this.usuario)
-      .subscribe((response) => {
-        console.log('fav actualizado');
-      });
+      .subscribe((response) => {});
 
     this.cdRef.detectChanges();
-    console.log('depues de dar fav', this.isFavorite);
   }
 
   //Abrir y cerrar información de contacto

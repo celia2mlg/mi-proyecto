@@ -93,7 +93,6 @@ export class MiPerfilComponent implements OnInit {
   //Mostrar favoritos
   getFavoritos(usuario: Usuario) {
     let id = this.usuario.id;
-    console.log(usuario);
     if (id) {
       this.anuncioService.getFavouritesService(id).subscribe((response) => {
         if (response && response.body) {
@@ -101,9 +100,6 @@ export class MiPerfilComponent implements OnInit {
             ...anuncio,
             currentImageIndex: 0,
           }));
-
-          console.log(this.anuncios);
-
           this.anunciosFiltrados = this.anuncios;
           this.length = this.anunciosFiltrados.length;
 
@@ -114,8 +110,6 @@ export class MiPerfilComponent implements OnInit {
           );
 
           this.cdr.markForCheck();
-        } else {
-          console.log('No hay anuncios');
         }
       });
     }
@@ -124,7 +118,6 @@ export class MiPerfilComponent implements OnInit {
   //Mostrar mis anuncios
   getMisAnuncios(usuario: Usuario) {
     let id = this.usuario.id;
-    console.log(usuario);
     if (id) {
       this.anuncioService.getMisAnunciosService(id).subscribe((response) => {
         if (response && response.body) {
@@ -132,9 +125,6 @@ export class MiPerfilComponent implements OnInit {
             ...anuncio,
             currentImageIndex: 0,
           }));
-
-          console.log(this.anuncios);
-
           this.anunciosFiltrados = this.anuncios;
           this.length = this.anunciosFiltrados.length;
 
@@ -145,8 +135,6 @@ export class MiPerfilComponent implements OnInit {
           );
 
           this.cdr.markForCheck();
-        } else {
-          console.log('No hay anuncios');
         }
       });
     }
@@ -176,8 +164,6 @@ export class MiPerfilComponent implements OnInit {
   navigateTo(anuncio: Anuncio) {
     this.router.navigate(['/anuncio', anuncio.id]);
   }
-
-  //TODO PASAR AL SERVICE PARA REUTILIZAR:
 
   //Abrir y cerrar información de contacto
   openContactSeller(anuncio: Anuncio) {

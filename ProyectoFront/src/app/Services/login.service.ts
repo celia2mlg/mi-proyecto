@@ -36,17 +36,12 @@ export class LoginService {
       .pipe(
         map((response: HttpResponse<any>) => {
           const body = response.body;
-          console.log('body');
-          console.log(response);
           if (response) {
             const headers = response.headers;
             const bearerToken = headers.get('Authorization')!;
-            console.log(response);
             const token = bearerToken.replace('Bearer ', '');
-            console.log(token);
 
             localStorage.setItem('token', token);
-            console.log('Bienvenido');
 
             this.getUser().subscribe((user) => {
               this.usuarioSubject.next(user);
@@ -83,7 +78,6 @@ export class LoginService {
   getUser() {
     const token = localStorage.getItem('token');
     const payload = token?.split('.')[1];
-    console.log('estamos en getuser');
     if (payload) {
       const decodedPayload = atob(payload);
       const parsedPayload = JSON.parse(decodedPayload);
