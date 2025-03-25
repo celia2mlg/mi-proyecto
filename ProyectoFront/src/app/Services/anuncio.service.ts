@@ -12,7 +12,7 @@ import { PaginationHelper } from '../Helpers/pagination-helper';
 export class AnuncioService {
   constructor(private http: HttpClient) {}
   rutaGlobal = 'http://localhost:8081/';
-  public filtros: any = {
+  public readonly defaultFiltros: any = {
     address: '',
     elevator: false,
     pool: false,
@@ -31,6 +31,9 @@ export class AnuncioService {
     propertyState: null,
     propertyType: null,
   };
+
+  public filtros = { ...this.defaultFiltros };
+
   public readonly numRoomsOp: number[] = [1, 2, 3, 4];
   public readonly numBathRoomsOp: number[] = [1, 2, 3, 4];
 
@@ -45,6 +48,11 @@ export class AnuncioService {
         headers: headers,
       })
       .pipe(map((response) => response));
+  }
+
+  //Reset filtros
+  resetService() {
+    this.filtros = { ...this.defaultFiltros };
   }
 
   //Get un anuncio especifico

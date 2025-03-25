@@ -217,6 +217,25 @@ export class AnunciosComponent implements OnInit {
       this.pageIndex,
       this.pageSize,
     );
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  //Reset filtros
+  resetFiltros() {
+    this.anuncioService.resetService();
+    this.filtros = { ...this.anuncioService.filtros };
+    this.anunciosFiltrados = this.anuncioService.filtrosService(
+      this.anuncios,
+      this.filtros,
+    );
+    this.length = this.anunciosFiltrados.length;
+    this.pageIndex = 0;
+    this.paginatedAnuncios = PaginationHelper.getPaginatedData(
+      this.anunciosFiltrados,
+      this.pageIndex,
+      this.pageSize,
+    );
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   //Dar o quitar favorito
