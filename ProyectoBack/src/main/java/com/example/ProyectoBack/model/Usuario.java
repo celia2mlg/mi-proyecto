@@ -30,6 +30,7 @@ import jakarta.persistence.OneToMany;
 		String email;
 		
 		@Column
+		@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 		String password;
 		
 		@Column
@@ -144,7 +145,7 @@ import jakarta.persistence.OneToMany;
 		@Override
 		public String toString() {
 			return "Usuario [id=" + id + ", nombre=" + nombre + ", apellidos=" + apellidos + ", email=" + email
-					+ ", password=" + password + ", telefono=" + telefono + ", anunciosFavoritos=" + anunciosFavoritos
+					+ ", telefono=" + telefono + ", anunciosFavoritos=" + anunciosFavoritos
 					+ ", anunciosPublicados=" + anunciosPublicados + "]";
 		}
 	
