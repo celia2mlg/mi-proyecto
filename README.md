@@ -96,7 +96,7 @@ Stores user credentials and profile data, linked to their published listings and
 
 The REST API is documented with Swagger UI, available at:
 ```
-http://localhost:8080/swagger-ui.html
+http://localhost:8081/swagger-ui.html
 ```
 
 Main endpoints:
